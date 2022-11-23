@@ -136,7 +136,7 @@ async function ambilAntrian(service_id)
         var response = await request.json()
         if(response.status == 'success')
         {
-            alert('Antrian berhasil di ambil')
+            // alert('Antrian berhasil di ambil')
         }
     }
 }

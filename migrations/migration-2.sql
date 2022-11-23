@@ -1,0 +1,1 @@
+ALTER TABLE queues ADD COLUMN is_print INT DEFAULT 0;

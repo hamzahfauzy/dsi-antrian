@@ -6,6 +6,7 @@ return [
     'app_domain'   => 'localhost',
     'app_port'     => '8080',
     'base_path'    => '',
+    'printer_name' => 'smb://127.0.0.1/antrianprint',
     'database'     => [
         'driver'   => 'mysqli',
         'host'     => 'localhost',

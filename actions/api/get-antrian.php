@@ -1,4 +1,6 @@
 <?php
+use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\Printer;
 
 $conn = conn();
 $db   = new Database($conn);
@@ -12,6 +14,18 @@ $db->insert('queues',[
     'number' => $next,
     'status' => 'menunggu'
 ]);
+
+$connector = new WindowsPrintConnector(config('printer_name'));
+$printer = new Printer($connector);
+$printer -> setJustification(Printer::JUSTIFY_CENTER);
+$printer -> setTextSize(2, 2);
+$printer -> text("DINAS PENDAPATAN\n");
+$printer -> text("KABUPATEN ASAHAN\n");
+$printer -> text("NOMOR ANTRIAN\n");
+$printer -> setTextSize(8, 8);
+$printer -> text("$next\n");
+$printer -> cut();
+$printer -> close();
 
 echo json_encode([
     'status' => 'success'
