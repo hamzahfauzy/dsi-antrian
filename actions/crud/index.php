@@ -27,6 +27,9 @@ if(isset($_GET['draw']))
         $search_columns[] = is_array($field) ? $key : $field;
     }
 
+    $orderKey = $order[0]['column']-1;
+    $orderKey = $orderKey == -1 ? 'id' : $columns[$order[0]['column']-1];
+
     $where = "";
 
     if(!empty($search))
@@ -47,11 +50,11 @@ if(isset($_GET['draw']))
     }
     else
     {
-        $db->query = "SELECT * FROM $table $where ORDER BY ".$columns[$order[0]['column']]." ".$order[0]['dir']." LIMIT $start,$length";
+        $db->query = "SELECT * FROM $table $where ORDER BY ".$orderKey." ".$order[0]['dir']." LIMIT $start,$length";
         $data  = $db->exec('all');
 
         $total = $db->exists($table,$where,[
-            $columns[$order[0]['column']] => $order[0]['dir']
+            $orderKey => $order[0]['dir']
         ]);
     }
 
@@ -99,10 +102,10 @@ if(isset($_GET['draw']))
             // $table, $d (data object)
             $action .= require '../actions/'.$table.'/action-button.php';
         }
-        if(is_allowed(get_route_path('crud/edit',['table'=>$table]),auth()->user->id)):
+        if($table != 'queues' &&  is_allowed(get_route_path('crud/edit',['table'=>$table]),auth()->user->id)):
             $action .= '<a href="'.routeTo('crud/edit',['table'=>$table,'id'=>$d->id]).'" class="btn btn-sm btn-warning"><i class="fas fa-pencil-alt"></i> Edit</a>';
         endif;
-        if(is_allowed(get_route_path('crud/delete',['table'=>$table]),auth()->user->id)):
+        if($table != 'queues' &&  is_allowed(get_route_path('crud/delete',['table'=>$table]),auth()->user->id)):
             $action .= '<a href="'.routeTo('crud/delete',['table'=>$table,'id'=>$d->id]).'" onclick="if(confirm(\'apakah anda yakin akan menghapus data ini ?\')){return true}else{return false}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</a>';
         endif;
         $results[$key][] = $action;

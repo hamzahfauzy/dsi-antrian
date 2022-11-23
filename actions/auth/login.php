@@ -2,11 +2,11 @@
 
 $success_msg = get_flash_msg('success');
 $error_msg = get_flash_msg('error');
+$conn  = conn();
+$db    = new Database($conn);
 
 if(request() == 'POST')
 {
-    $conn  = conn();
-    $db    = new Database($conn);
 
     $user = $db->single('users',[
         'username' => $_POST['username'],
@@ -15,7 +15,12 @@ if(request() == 'POST')
 
     if($user)
     {
-        Session::set(['user_id'=>$user->id]);
+        $session_param = ['user_id'=>$user->id];
+        if(!empty($_POST['pos']))
+        {
+            $session_param['pos'] = $_POST['pos'];
+        }
+        Session::set($session_param);
         header('location:'.routeTo(config('after_login_page')));
         die();
     }
@@ -25,7 +30,10 @@ if(request() == 'POST')
     die();
 }
 
+$pos = $db->all('pos');
+
 return [
+    'pos' => $pos,
     'success_msg' => $success_msg,
     'error_msg' => $error_msg,
 ];

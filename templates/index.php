@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Z-Techno Boilerplate Landing Page</title>
+	<title>Dinas Pendapatan Kabupaten Asahan</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="<?=asset('assets/img/main-logo.png')?>" type="image/x-icon"/>
+	<link rel="icon" href="<?=asset('assets/img/logo-bwhite.webp')?>" type="image/x-icon"/>
 
 	<!-- Fonts and icons -->
 	<script src="<?=asset('assets/js/plugin/webfont/webfont.min.js')?>"></script>
@@ -20,23 +20,14 @@
 
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="<?=asset('assets/css/bootstrap.min.css')?>">
-    <style>
-    .centered {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    </style>
+	<link rel="stylesheet" href="<?=asset('assets/css/landing.css')?>">
+	<script src="<?=asset('assets/js/core/jquery.3.2.1.min.js')?>"></script>
+	<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
 </head>
 <body>
-    <div class="centered">
-        <center>
-            <img src="<?=asset('assets/img/main-logo.png')?>" alt="" width="100px">
-            <h2>Selamat, Instalasi Z-Techno Boilerplate telah berhasil.</h2>
-            <br>
-            <a href="<?=routeTo('default/index')?>" class="btn btn-primary">Buka Panel Admin</a>
-        </center>
-    </div>
+	<div class="landing-content">
+		
+	</div>
+	<script src="<?=asset('assets/js/slide.js')?>"></script>
 </body>
 </html>

@@ -23,11 +23,11 @@ $config = [
     'fields' => $tablefields,
     'pretty_url' => true,
     'theme' => [
-        'header_color'     => 'blue',
-        'top_navbar_color' => 'blue2',
-        'sidebar_color'    => 'nav-primary',
-        'panel_color'      => 'bg-primary-gradient',
-        'button_main_color'=> 'btn-primary',
+        'header_color'     => 'green',
+        'top_navbar_color' => 'green2',
+        'sidebar_color'    => 'nav-success',
+        'panel_color'      => 'bg-success-gradient',
+        'button_main_color'=> 'btn-success',
     ]
 ];
 

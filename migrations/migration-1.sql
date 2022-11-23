@@ -1,0 +1,4 @@
+CREATE TABLE screen_savers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    file VARCHAR(45) NOT NULL
+);

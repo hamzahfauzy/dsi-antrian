@@ -160,6 +160,7 @@ class Validation
             $all_mimes = $_rule[1]; // dbname
             $mimes = explode(',',$all_mimes);
             $ext  = pathinfo($data[$key]['name'], PATHINFO_EXTENSION);
+            $ext  = strtolower($ext);
             if(!in_array($ext,$mimes))
             {
                 return ['status' => false, 'message' => __($key) . ' field extension must be '.$all_mimes];
