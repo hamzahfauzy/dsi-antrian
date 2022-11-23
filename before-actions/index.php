@@ -9,6 +9,11 @@ if(startWith($route,'api'))
     return require 'api.php';
 }
 
+if($route=='index')
+{
+    return true;
+}
+
 // check if installation is exists
 $conn  = conn();
 $db    = new Database($conn);
