@@ -17,24 +17,105 @@ body:before {
     top:0;
     left:0;
     content: ' ';
-    background-color:rgba(0, 0, 0, 0.375);
+    background-color:rgba(0, 0, 0, 0.65);
 }
-body.ready:before {
+/* body.ready:before {
     background-color:rgba(55, 178, 65, 0.375);
-}
+} */
 .centered {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width:1000px;
+}
+.bg-white {
     background: #FFF;
     padding: 20px;
-    width:1000px;
     border-radius:1rem;
 }
-body .landing-content {
+/* body .landing-content {
     display: none;
-}
+} */
 body.ready .landing-content {
     display: block;
 }
+/* General Button Style */
+
+.button {
+    position: relative;
+    display: block;
+    background: transparent;
+    width: 450px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 32px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #FFF;
+    margin: 40px auto;
+    cursor:pointer;
+    box-sizing: border-box;
+    border:0px !important;
+}
+.button:before,
+.button:after {
+position: absolute;
+content: '';
+width: 450px;
+left: 0px;
+height: 45px;
+z-index: -1;
+box-sizing: unset;
+}
+
+.button:before {
+transform: perspective(15px) rotateX(3deg);
+}
+.button:after {
+top: 53px;
+transform: perspective(15px) rotateX(-3deg);
+}
+
+/* Button Border Style */
+
+.button.border:before,
+.button.border:after {
+border: 4px solid #cbd80a;
+background: #28a745;
+}
+.button.border:before {
+border-bottom: none; /* to prevent the border-line showing up in the middle of the shape */
+}
+.button.border:after {
+border-top: none; /* to prevent the border-line showing up in the middle of the shape */
+}
+
+/* Button hover styles */
+
+.button.border:hover:before,
+.button.border:hover:after {
+/* background: #28a745; */
+border-left:4px solid #e04e5e;
+border-right:4px solid #e04e5e;
+}
+.button.border:hover {
+color: #fff;
+}
+
+.non-flex-center {
+    position:relative;transform:none;top:0;left:0;margin:auto;margin-top:4%;z-index: 1;
+    padding-bottom: 100px;;
+}
+
+.button.back.border:before,
+.button.back.border:after {
+border-left: 4px solid #28a745;
+border-right: 4px solid #28a745;
+background: #cbd80a;
+}
+
+.btn,.form-control {
+    zoom:2;
+} 

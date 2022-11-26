@@ -1,4 +1,4 @@
-<div class="centered" style="position:inherit;transform:translate(50%, 4%)">
+<div class="centered bg-white non-flex-center">
     <center>
         <img src="<?=asset('assets/img/logo-bwhite.webp')?>" alt="" width="100px">
         <h2>Kalkulator BPHTB</h2>

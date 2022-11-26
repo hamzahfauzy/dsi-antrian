@@ -1,4 +1,4 @@
-<div class="centered" id="centered-pbb">
+<div class="centered bg-white non-flex-center" id="centered-pbb">
     <center>
         <img src="http://103.15.243.147:81/app/media/images/logo.png" alt="" width="250px">
         <p></p>

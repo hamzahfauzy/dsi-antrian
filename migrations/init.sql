@@ -41,7 +41,8 @@ CREATE TABLE migrations (
 
 CREATE TABLE pos (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL
+    name VARCHAR(100) NOT NULL,
+    code VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE services (

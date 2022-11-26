@@ -5,6 +5,10 @@ return [
         'name' => [
             'label' => 'Nama',
             'type'  => 'text'
+        ],
+        'code' => [
+            'label' => 'Kode',
+            'type'  => 'text'
         ]
     ],
     

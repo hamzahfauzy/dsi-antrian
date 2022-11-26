@@ -40,7 +40,8 @@ var slideJs = {
     ready: e => {
         if(!slideJs.steady)
         {
-            document.body.classList.toggle('ready')
+            // document.body.classList.toggle('ready')
+            load_page('api/page/homepage')
             slideJs.steady = true
         }
 
@@ -49,8 +50,8 @@ var slideJs = {
             clearTimeout(slideJs._steadyTimeout)
         }
         slideJs._steadyTimeout = setTimeout(ev => {
-            document.body.classList.toggle('ready')
-            load_page('api/page/homepage')
+            // document.body.classList.toggle('ready')
+            load_page('api/page/wellcome')
             slideJs.steady = false
         }, slideJs.steadyTimeout)
     }
@@ -70,10 +71,9 @@ async function load_page(url)
         var response = await request.text()
         document.querySelector('.landing-content').innerHTML = response
 
-        if($("#nop").hasOwnProperty('inputmask'))
-        {
+        setTimeout(e => {
             $("#nop").inputmask({"mask": "99.99.999.999.999-9999.9"});
-        }
+        },500)
     }
 
     initNavPageHandle()
@@ -89,7 +89,7 @@ function initNavPageHandle()
     })
 }
 
-load_page('api/page/homepage')
+load_page('api/page/wellcome')
 
 async function cekPbb(form)
 {
@@ -101,8 +101,6 @@ async function cekPbb(form)
     {
         var response = await request.text()
         document.querySelector('.result').innerHTML = response
-        document.querySelector('#centered-pbb').style.position = 'inherit'
-        document.querySelector('#centered-pbb').style.transform = 'translate(50%, 4%)'
     }
 }
 
@@ -115,8 +113,6 @@ async function cekPbbWithYear(nop, year)
     {
         var response = await request.text()
         document.querySelector('.result').innerHTML = response
-        document.querySelector('#centered-pbb').style.position = 'inherit'
-        document.querySelector('#centered-pbb').style.transform = 'translate(50%, 4%)'
     }
 }
 
