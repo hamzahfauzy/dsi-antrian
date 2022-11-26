@@ -4,13 +4,13 @@
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            Z-Techno
+                            BAPPENDA
                         </a>
                     </li>
                 </ul>
             </nav>
             <div class="copyright ml-auto">
-                Copyright &copy; 2021, made with <i class="fa fa-heart heart text-danger"></i> by <a href="#">Z-Techno</a>
+                Copyright &copy; <?=date('Y')?> <a href="#">Badan Pendapatan Daerah Kabupaten Asahan</a>
             </div>				
         </div>
     </footer>
@@ -56,6 +56,7 @@
 	<script src="<?=asset('assets/js/atlantis.min.js')?>"></script>
 
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="https://code.responsivevoice.org/responsivevoice.js?key=R2qA371F"></script>
 	<script src="<?=asset('assets/js/plugin/datatables-pagingtype/full_numbers_no_ellipses.js')?>"></script>
 	<script>
 		$('.datatable-crud').dataTable({

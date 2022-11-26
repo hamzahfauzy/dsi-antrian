@@ -34,9 +34,9 @@ body:before {
     padding: 20px;
     border-radius:1rem;
 }
-/* body .landing-content {
+body .landing-content {
     display: none;
-} */
+}
 body.ready .landing-content {
     display: block;
 }

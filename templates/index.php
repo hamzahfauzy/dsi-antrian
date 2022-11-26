@@ -29,6 +29,7 @@
 	<div class="landing-content">
 		
 	</div>
+	<script src="https://code.responsivevoice.org/responsivevoice.js?key=R2qA371F"></script>
 	<script src="<?=asset('assets/js/slide.js')?>"></script>
 	<script>
 	function perolehan(){

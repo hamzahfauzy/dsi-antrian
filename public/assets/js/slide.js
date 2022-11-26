@@ -40,8 +40,8 @@ var slideJs = {
     ready: e => {
         if(!slideJs.steady)
         {
-            // document.body.classList.toggle('ready')
-            load_page('api/page/homepage')
+            document.body.classList.toggle('ready')
+            // load_page('api/page/homepage')
             slideJs.steady = true
         }
 
@@ -50,8 +50,8 @@ var slideJs = {
             clearTimeout(slideJs._steadyTimeout)
         }
         slideJs._steadyTimeout = setTimeout(ev => {
-            // document.body.classList.toggle('ready')
-            load_page('api/page/wellcome')
+            document.body.classList.toggle('ready')
+            // load_page('api/page/wellcome')
             slideJs.steady = false
         }, slideJs.steadyTimeout)
     }
@@ -89,7 +89,7 @@ function initNavPageHandle()
     })
 }
 
-load_page('api/page/wellcome')
+load_page('api/page/homepage')
 
 async function cekPbb(form)
 {

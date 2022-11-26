@@ -1,7 +1,7 @@
 <div class="centered">
     <center>
         <img src="<?=asset('assets/img/logo-bwhite.webp')?>" alt="" width="100px">
-        <h2 class="text-white">Silahkan pilih menu pada layanan berikut :</h2>
+        <h2 class="text-white">Badan Pendapatan Daerah Kabupaten Asahan</h2>
         <br>
         <button data-page="api/page/antrian" class="btn-nav-page button ribbon-outset border">Loket Pelayanan</button>
         <button data-page="api/page/cek-pbb" class="btn-nav-page button ribbon-outset border">Cek PBB</button>
