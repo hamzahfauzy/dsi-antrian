@@ -58,5 +58,5 @@ CREATE TABLE queues (
     number INT NOT NULL,
     status VARCHAR(25) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT NULL
+    updated_at DATETIME DEFAULT NULL
 );
