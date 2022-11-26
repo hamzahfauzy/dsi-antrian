@@ -133,13 +133,35 @@ function sumTanah() {
     if (!isNaN(totalNjop)) {
       if ( totalNjop > 0 ) {
         document.getElementById("totalHasilNjop").value = number_format(totalNjop,0,',','.');
-        document.getElementById('totalNjop').value = totalNjop;
+        // document.getElementById('totalNjop').value = totalNjop;
       } else {
-        document.getElementById('totalNjop').value = 0;
+        // document.getElementById('totalNjop').value = 0;
       }
     } else {
-      document.getElementById('totalNjop').value = 0;
+      // document.getElementById('totalNjop').value = 0;
     }
+
+    var njopDasar = parseInt(hasilNjopTanah) + parseInt(hasilNjopBangunan);
+    var njoptkp   = 12500000
+    var njopPbb   = njopDasar-njoptkp
+    var persentase = 0.1
+    var persentaseLabel = "0.10%"
+    if(njopPbb > 200000000 && njopPbb <= 800000000)
+    {
+      persentase = 0.15
+      persentaseLabel = "0.15%"
+    }
+    if(njopPbb > 800000000)
+    {
+      persentase = 0.2
+      persentaseLabel = "0.20%"
+    }
+    var jumlahPbb = njopPbb * (persentase/100)
+    document.querySelector('#njop_dasar').innerHTML = number_format(njopDasar,0,',','.')
+    document.querySelector('#njoptkp').innerHTML = number_format(njoptkp,0,',','.')
+    document.querySelector('#njop_pbb').innerHTML = number_format(njopPbb,0,',','.')
+    document.querySelector('#jumlah_pbb').innerHTML = number_format(jumlahPbb,0,',','.')
+    document.querySelector('#persen_pbb').innerHTML = persentaseLabel
 
 }
 if(document.getElementById("npoptkp"))

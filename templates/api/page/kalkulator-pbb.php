@@ -20,7 +20,7 @@
                         <label>Luas x NJOP Tanah :</label>
                         <input id="totalHasilNjopTanah" name="form[hasil_njop_tanah]" class="form-control" value="0" type="text" readonly="">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group d-none">
                         <label>Total NJOP PBB :</label>
                         <input id="totalHasilNjop" name="form[hasil_njop]" value="0" type="text" class="form-control" readonly="">
                     </div>
@@ -30,7 +30,7 @@
                 <div class="contact-form">
                     <div class="form-group">
                         <label>Luas Bangunan (M<sup>2</sup>) :</label>
-                        <input name="form[luas_bangunan]" value="" id="luasBangunan" onkeyup="sumTanah();" onkeypress="return isNumberKey(event)" class="form-control" type="text" autocomplete="off" required="">
+                        <input name="form[luas_bangunan]" value="0" id="luasBangunan" onkeyup="sumTanah();" onkeypress="return isNumberKey(event)" class="form-control" type="text" autocomplete="off" required="">
                     </div>
                     <div class="form-group">
                         <label>NJOP Bangunan Per M<sup>2</sup> :</label>
@@ -40,6 +40,24 @@
                         <label>Luas x NJOP Bangunan :</label>
                         <input id="totalHasilNjopBangunan" name="form[hasil_njop_bangunan]" class="form-control" value="0" type="text" readonly="">
                     </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="">NJOP Sebagai Dasar Pengenaan PBB</label>
+                    <p id="njop_dasar">0</p>
+                </div>
+                <div class="form-group">
+                    <label for="">NJOPTKP (NJOP Tidak Kena Pajak)</label>
+                    <p id="njoptkp">0</p>
+                </div>
+                <div class="form-group">
+                    <label for="">NJOP untuk perhitungan PBB</label>
+                    <p id="njop_pbb">0</p>
+                </div>
+                <div class="form-group">
+                    <label for="">Jumlah Pembayaran PBB <span id="persen_pbb">0,10%</span></label>
+                    <p id="jumlah_pbb">0</p>
                 </div>
             </div>
         </div>
