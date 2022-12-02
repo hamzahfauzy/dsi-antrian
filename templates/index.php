@@ -29,7 +29,7 @@
 <body>
 	<div class="wrap">
 		<div id="main">
-			<div class="inner fade-in">
+			<div class="inner fade-in" style="padding-left:10px;">
 				<header class="site-header">
 					<h1 class="site-title"><img src="<?=asset('assets-landing/images/logo.png')?>" width="130" height="60" alt="InTime" /></h1>
 				</header>
@@ -285,9 +285,9 @@
   <script type="text/javascript">
     $(document).ready( function(){
       $.backstretch([
-  			'<?=asset('assets-landing/images/bg12.jpg')?>',
-  			'<?=asset('assets-landing/images/bg23.jpg')?>',
-  			'<?=asset('assets-landing/images/bg32.jpg')?>'
+			<?php foreach($slides as $slide): ?>
+  			'<?=asset($slide->file)?>',
+			<?php endforeach ?>
   		], {
   			fade: 1600,
   			duration: 5000
