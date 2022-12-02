@@ -7,16 +7,17 @@ $db   = new Database($conn);
 $service_id  = $_POST['service_id'];
 $service = $db->single('services',['id'=>$service_id]);
 $pos = $db->single('pos',['id'=>$service->pos_id]);
-$last_queues = $db->single('queues',['pos_id'=>$service->pos_id],['id'=>'desc']);
+$db->query = "SELECT * FROM queues WHERE pos_id=$pos->id AND created_at LIKE '%".date('Y-m-d')."%' ORDER BY id DESC";
+$last_queues = $db->exec('single');
 $next = $last_queues ? $last_queues->number+1 : 1;
-$db->insert('queues',[
+$queue = $db->insert('queues',[
     'pos_id' => $service->pos_id,
     'service_id' => $service->id,
     'number' => $next,
     'status' => 'menunggu'
 ]);
 
-$where = ($where ? ' AND ' : ' WHERE ') . ' pos_id='.Session::get('pos').' ';
+$where = (isset($where) && !empty($where) ? ' AND ' : ' WHERE ') . ' pos_id='.Session::get('pos').' ';
 
 $db->query = "SELECT * FROM queues WHERE pos_id=$pos->id AND status='menunggu' AND created_at LIKE '%".date('Y-m-d')."%'";
 $data  = $db->exec('exists');
@@ -41,6 +42,8 @@ $printer -> cut();
 $printer -> close();
 
 echo json_encode([
-    'status' => 'success'
+    'status' => 'success',
+    'data' => $queue,
+    'last_queue' => $last_queues
 ]);
 die();

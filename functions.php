@@ -604,7 +604,7 @@ function do_upload($file, $folder, $field = false, $multiple = false)
 }
 
 function tgl_indo($tanggal = false, $hari = false){
-    $tanggal = $tanggal ?? date('Y-m-d');
+    $tanggal = $tanggal ? $tanggal : date('Y-m-d');
 	$bulan = array (
 		1 =>   'Januari',
 		'Februari',
