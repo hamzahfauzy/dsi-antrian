@@ -24,12 +24,17 @@
  <link rel="stylesheet" type="text/css" media="all" href="<?=asset('assets-landing/css/style.css')?>" />
  <link rel="stylesheet" type="text/css" media="all" href="<?=asset('assets-landing/css/override.css')?>" />
  <script type="text/javascript" src="<?=asset('assets-landing/js/modernizr.js')?>"></script>
+ <style>
+ .hide-home {
+	padding-left: 10px; position: relative; opacity: 0 !important; top: 0px !important;
+ }
+ </style>
 </head>
 
 <body>
 	<div class="wrap">
 		<div id="main">
-			<div class="inner fade-in" style="padding-left:10px;">
+			<div class="inner fade-in hide-home" style="padding-left:10px;">
 				<header class="site-header">
 					<h1 class="site-title"><img src="<?=asset('assets-landing/images/logo.png')?>" width="130" height="60" alt="InTime" /></h1>
 				</header>
@@ -54,7 +59,7 @@
 		</div>
 
 		<div id="modal-layanan">
-			<div class="inner">
+			<div class="inner"  style="padding-left:10px;">
 				<div class="social">
 					<a href="#" id="modal-close-layanan"><span class="fa fa-times" title="Close"></span></a>
 				</div>
@@ -69,7 +74,7 @@
 
 		<!-- Modal Layanan Pemerintah -->
 		<div id="modal-pemerintah">
-			<div class="inner">
+			<div class="inner"  style="padding-left:10px;">
 				<div class="social">
 					<a href="#" id="modal-close-pemerintah"><span class="fa fa-times" title="Close"></span></a>
 				</div>
@@ -102,7 +107,7 @@
 
     	<!-- Modal Layanan Publik -->
 		<div id="modal-publik">
-			<div class="inner">
+			<div class="inner"  style="padding-left:10px;">
 				<div class="social">
 					<a href="#" id="modal-close-publik"><span class="fa fa-times" title="Close"></span></a>
 				</div>
@@ -174,7 +179,7 @@
 
     <!-- Modal Subdomain -->
 		<div id="modal-opd">
-			<div class="inner">
+			<div class="inner"  style="padding-left:10px;">
 				<div class="social">
 					<a href="#" id="modal-close-opd"><span class="fa fa-times" title="Close"></span></a>
 				</div>
@@ -388,6 +393,37 @@
 			}
 		}
 	}
+
+	var slideJs = {
+		images: [],
+		steady:false,
+		steadyTimeout:30000,
+		_steadyTimeout:false,
+		ready: e => {
+			if(!slideJs.steady)
+			{
+				document.querySelector('#main > .inner').classList.toggle('hide-home')
+				slideJs.steady = true
+			}
+
+			if(slideJs._steadyTimeout)
+			{
+				clearTimeout(slideJs._steadyTimeout)
+			}
+			slideJs._steadyTimeout = setTimeout(ev => {
+				document.querySelector('#main > .inner').classList.toggle('hide-home')
+				$('#modal-pemerintah').removeClass('modal-active').hide();
+				$('#modal-layanan').removeClass('modal-active').hide();
+				$('#modal-opd').removeClass('modal-active').hide();
+				$('#modal-public').removeClass('modal-active').hide();
+				$('#main .inner').animate({ opacity: 3 });
+				slideJs.steady = false
+			}, slideJs.steadyTimeout)
+		}
+	}
+
+	document.addEventListener('mousemove', slideJs.ready)
+	document.addEventListener('keypress', slideJs.ready)
 	</script>
 </body>
 </html>
