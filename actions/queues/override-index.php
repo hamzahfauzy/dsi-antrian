@@ -4,7 +4,7 @@ if(Session::get('pos'))
     $where = ($where ? ' AND ' : ' WHERE ') . ' pos_id='.Session::get('pos').' AND created_at LIKE \'%'.date('Y-m-d').'%\'';
 }
 
-$db->query = "SELECT * FROM $table $where ORDER BY created_at DESC, status ASC, pos_id ASC LIMIT $start,$length";
+$db->query = "SELECT * FROM $table $where ORDER BY created_at ASC, status ASC, pos_id ASC LIMIT $start,$length";
 $data  = $db->exec('all');
 
 $total = $db->exists($table,$where,[
