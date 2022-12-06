@@ -383,21 +383,21 @@
                     <div class="one-half">
                       <div class="form-group">
     										<label for="">NJOP Sebagai Dasar Pengenaan PBB</label>
-    										<p id="njop_dasar">0</p>
+    										<p id="njop_dasar" class="calc_value">0</p>
     									</div>
     									<div class="form-group">
     										<label for="">NJOPTKP (NJOP Tidak Kena Pajak)</label>
-    										<p id="njoptkp">0</p>
+    										<p id="njoptkp" class="calc_value">0</p>
     									</div>
                     </div>
                     <div class="one-half">
     									<div class="form-group">
     										<label for="">NJOP untuk perhitungan PBB</label>
-    										<p id="njop_pbb">0</p>
+    										<p id="njop_pbb" class="calc_value">0</p>
     									</div>
     									<div class="form-group">
     										<label for="">Jumlah Pembayaran PBB <span id="persen_pbb">0,10%</span></label>
-    										<p id="jumlah_pbb">0</p>
+    										<p id="jumlah_pbb" class="calc_value">0</p>
     									</div>
     								</div>
     							</div>
@@ -464,12 +464,12 @@
 										</div>
                     <div class="form-group" style="text-align:left">
 											<label>Nilai Perolehan Objek Pajak Tidak Kena Pajak (NPOPTKP) :</label>
-											<div id="vNpoptkp"><b>0</b></div>
+											<div id="vNpoptkp" class="calc_value"><b>0</b></div>
 											<input name="form[npoptkp]" placeholder="0" id="npoptkp" class="form-control" type="hidden" readonly="">
 										</div>
                     <div class="form-group" style="text-align:left">
 											<label>Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP) :</label>
-											<div id="vHasilNpopkp"><b>0</b></div>
+											<div id="vHasilNpopkp" class="calc_value"><b>0</b></div>
 											<input name="form[npopkp]" value="" id="hasilNpopkp" class="form-control" type="hidden" readonly="">
 										</div>
 									</div>
@@ -478,7 +478,7 @@
 									<div class="contact-form">
 										<div class="form-group" style="text-align:left">
 											<label>Bea Perolehan Hak atas Tanah dan Bangunan yang terutang :</label>
-											<div id="vBphtbTerhutang"><b>0</b></div>
+											<div id="vBphtbTerhutang" class="calc_value"><b>0</b></div>
 											<input name="form[bphtb_terhutang]" value="" id="bphtbTerhutang" class="form-control" type="hidden" readonly="">
 										</div>
                     <div class="form-group" style="text-align:left">
@@ -487,12 +487,12 @@
 										</div>
 										<div class="form-group" style="text-align:left">
 											<label>Total Pengurangan :</label>
-											<div id="vTotalPengurangan"><b>0</b></div>
+											<div id="vTotalPengurangan" class="calc_value"><b>0</b></div>
 											<input name="form[total_pengurangan]" value="" id="totalPengurangan" class="form-control" type="hidden" readonly="">
 										</div>
 										<div class="form-group" style="text-align:left">
 											<label>Pengenaan BPHTB :</label>
-											<div id="vBphtb" style="font-style: italic; font-size:40px;"><b>0</b></div>
+											<div id="vBphtb" class="calc_value" style="font-style: italic; font-size:40px;"><b>0</b></div>
 											<input name="form[bphtb]" value="" id="bphtb" class="form-control" type="hidden" readonly="">
 										</div>
 									</div>

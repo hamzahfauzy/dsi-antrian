@@ -184,4 +184,16 @@ function clearAllInput()
 			elements[ii].value = "";
 		}
 	}
+	
+	var calc_value = document.querySelectorAll(".calc_value");
+	for (var ii=0; ii < calc_value.length; ii++) {
+		calc_value[ii].innerHTML = "0";
+		// if (elements[ii].type == "text") {
+		// }
+	}
+
+	document.querySelector('.result').innerHTML = ""
+
+	$('#vNpoptkp').html(0);
+	$('#npoptkp').val(0);
 }
