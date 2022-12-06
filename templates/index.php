@@ -616,10 +616,16 @@
 
 		if(request.ok)
 		{
-			var response = await request.json()
-			if(response.status == 'success')
-			{
-				// alert('Antrian berhasil di ambil')
+			try {
+				var response = await request.json()
+				if(response.status == 'success')
+				{
+					alert('Silahkan Ambil Tiket Antrian Anda')
+					$('#modal-layanan').removeClass('modal-active').hide();
+					$('#main .inner').animate({ opacity: 3 });
+				}
+			} catch (error) {
+				alert('error')
 			}
 		}
 	}
