@@ -29,3 +29,4 @@ foreach($files as $file)
 }
 
 echo "Init Migration File Success\n";
+

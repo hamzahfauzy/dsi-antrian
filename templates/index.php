@@ -42,19 +42,12 @@
 					<h3 class="main-phrase">BADAN PENDAPATAN DAERAH</h3>
 					<h1 class="main-phrase-2">KABUPATEN ASAHAN</h1>
 					<div class="modal-toggle">
-						<a href="#" id="modal-open-layanan" class="button-about"><span class="fa fa-home"></span> LOKET PELAYANAN</a>
+						<a href="#" id="modal-open-layanan" class="button-about"><span class="fa fa-print"></span> AMBIL ANTRIAN</a>
 						<a href="#" id="modal-open-pemerintah" class="button-about"><span class="fa fa-fire"></span> CEK PBB</a>
 						<a href="#" id="modal-open-publik" class="button-about"><span class="fa fa-edit"></span> KALKULATOR PBB</a>
 						<a href="#" id="modal-open-opd" class="button-about"><span class="fa fa-globe"></span> KALKULATOR BPTHB</a>
 					</div>
-					<div class="social">
-						<a href="#" target="_blank"><span class="fa fa-facebook" title="Facebook"></span></a>
-						<a href="#" target="_blank"><span class="fa fa-twitter" title="Twitter"></span></a>
-						<a href="#" target="_blank"><span class="fa fa-instagram" title="Instagram"></span></a>
-						<a href="#" target="_blank"><span class="fa fa-youtube" title="YouTube"></span></a>
-					</div>
-					<p class="subtitle">Badan Pendapatan Daerah Kabupaten Asahan <br /> Copyright &copy; 2022 - All Right Reserved.</p>
-				</section>
+        </section>
 			</div>
 		</div>
 
@@ -64,9 +57,9 @@
 					<a href="#" id="modal-close-layanan"><span class="fa fa-times" title="Close"></span></a>
 				</div>
 				<section class="content container-fluid">
-					<h1 class="section-title">Loket Pelayanan</h1>
+					<h1 class="section-title">Pilih Pelayanan</h1>
 					<?php foreach($services as $service): ?>
-					<button class="button-about button-layanan" onclick="ambilAntrian(<?=$service->id?>)"><?=$service->name?></button>
+            <button class="button-about button-layanan" onclick="ambilAntrian(<?=$service->id?>)"><span class="fa fa-check"></span> <?=$service->name?></button>
 					<?php endforeach ?>
 				</section>
 			</div>
@@ -82,12 +75,6 @@
 					<h1 class="section-title">CEK PBB</h1>
 					<div class="bg-white">
 						<center>
-							<img src="http://103.15.243.147:81/app/media/images/logo.png" alt="" width="250px">
-							<p></p>
-							<a href="https://play.google.com/store/apps/details?id=com.dsi.smartpajak" target="_blank" title="Download Aplikasi di Playstore">
-								<img src="http://103.15.243.147:81/app/media/images/play-store.png" width="100px">
-							</a>
-							<p></p>
 							<form action="" method="post" onsubmit="cekPbb(this); return false">
 								<!-- Our form fields -->
 								<div class="form-group">
@@ -99,7 +86,7 @@
 								</div>
 							</form>
 						</center>
-						<div class="result"></div>
+						<div class="result" style="margin-top:25px;"></div>
 					</div>
 				</section>
 			</div>
@@ -124,7 +111,7 @@
 										</div>
 										<div class="form-group">
 											<label>NJOP Tanah Per M<sup>2</sup> :</label>
-											<input name="form[njop_tanah]" value="0" id="njopTanah" onkeyup="sumTanah();" onkeypress="return isNumberKey(event)" class="form-control" "="" type="text" autocomplete="off">
+											<input name="form[njop_tanah]" value="0" id="njopTanah" onkeyup="sumTanah();" onkeypress="return isNumberKey(event)" class="form-control"  type="text" autocomplete="off">
 										</div>
 										<div class="form-group">
 											<label>Luas x NJOP Tanah :</label>
@@ -152,30 +139,34 @@
 										</div>
 									</div>
 								</div>
-								<div class="one">
-									<div class="form-group">
-										<label for="">NJOP Sebagai Dasar Pengenaan PBB</label>
-										<p id="njop_dasar">0</p>
-									</div>
-									<div class="form-group">
-										<label for="">NJOPTKP (NJOP Tidak Kena Pajak)</label>
-										<p id="njoptkp">0</p>
-									</div>
-									<div class="form-group">
-										<label for="">NJOP untuk perhitungan PBB</label>
-										<p id="njop_pbb">0</p>
-									</div>
-									<div class="form-group">
-										<label for="">Jumlah Pembayaran PBB <span id="persen_pbb">0,10%</span></label>
-										<p id="jumlah_pbb">0</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-			</div>
-		</div>
+                <div class="row">
+                  <div class="one">
+                    <div class="one-half">
+                      <div class="form-group">
+    										<label for="">NJOP Sebagai Dasar Pengenaan PBB</label>
+    										<p id="njop_dasar">0</p>
+    									</div>
+    									<div class="form-group">
+    										<label for="">NJOPTKP (NJOP Tidak Kena Pajak)</label>
+    										<p id="njoptkp">0</p>
+    									</div>
+                    </div>
+                    <div class="one-half">
+    									<div class="form-group">
+    										<label for="">NJOP untuk perhitungan PBB</label>
+    										<p id="njop_pbb">0</p>
+    									</div>
+    									<div class="form-group">
+    										<label for="">Jumlah Pembayaran PBB <span id="persen_pbb">0,10%</span></label>
+    										<p id="jumlah_pbb">0</p>
+    									</div>
+    								</div>
+    							</div>
+    						</div>
+              </div>
+            </section>
+          </div>
+        </div>
 
     <!-- Modal Subdomain -->
 		<div id="modal-opd">
@@ -229,29 +220,29 @@
 										</div>
 										<div class="form-group" style="text-align:left">
 											<label>Nilai Perolehan Objek Pajak (NPOP) :</label>
-											<div class="msg-npop"><i><font color="#D32F2F">Pilih Jenis Perolehan terlebih dahulu </font></i></div>
+											<div class="msg-npop" style="font-size:15px;"><i><font color="#D32F2F">Pilih Jenis Perolehan terlebih dahulu </font></i></div>
 											<input type="text" readonly="" name="form[npop]" value="0" id="hasilNpop" onkeyup="sumBphtb();" onkeypress="return isNumberKey(event)" class="form-control input-npop">
 										</div>
-										<div class="form-group" style="text-align:left">
+                    <div class="form-group" style="text-align:left">
 											<label>Nilai Perolehan Objek Pajak Tidak Kena Pajak (NPOPTKP) :</label>
 											<div id="vNpoptkp"><b>0</b></div>
 											<input name="form[npoptkp]" value="0" id="npoptkp" class="form-control" type="hidden" readonly="">
 										</div>
-										<div class="form-group" style="text-align:left">
+                    <div class="form-group" style="text-align:left">
 											<label>Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP) :</label>
 											<div id="vHasilNpopkp"><b>0</b></div>
 											<input name="form[npopkp]" value="" id="hasilNpopkp" class="form-control" type="hidden" readonly="">
-										</div>
-										<div class="form-group" style="text-align:left">
-											<label>Bea Perolehan Hak atas Tanah dan Bangunan yang terutang :</label>
-											<div id="vBphtbTerhutang"><b>0</b></div>
-											<input name="form[bphtb_terhutang]" value="" id="bphtbTerhutang" class="form-control" type="hidden" readonly="">
 										</div>
 									</div>
 								</div>
 								<div class="one-half wow fadeIn" data-wow-delay="0.10s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
 									<div class="contact-form">
 										<div class="form-group" style="text-align:left">
+											<label>Bea Perolehan Hak atas Tanah dan Bangunan yang terutang :</label>
+											<div id="vBphtbTerhutang"><b>0</b></div>
+											<input name="form[bphtb_terhutang]" value="" id="bphtbTerhutang" class="form-control" type="hidden" readonly="">
+										</div>
+                    <div class="form-group" style="text-align:left">
 											<label>Pengurangan (%) :</label>
 											<input type="text" name="form[pengurangan]" value="0" id="pengurangan" onkeyup="sumBphtb();" onkeypress="return isNumberKey(event)" class="form-control">
 										</div>
@@ -262,7 +253,7 @@
 										</div>
 										<div class="form-group" style="text-align:left">
 											<label>Pengenaan BPHTB :</label>
-											<div id="vBphtb" style="font-size:40px;"><b>0</b></div>
+											<div id="vBphtb" style="font-style: italic; font-size:40px;"><b>0</b></div>
 											<input name="form[bphtb]" value="" id="bphtb" class="form-control" type="hidden" readonly="">
 										</div>
 									</div>

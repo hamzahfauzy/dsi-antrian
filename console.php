@@ -16,3 +16,5 @@ foreach ($argv as $arg) {
 
 if(file_exists('actions/'.$action.'.php'))
     require 'actions/'.$action.'.php';
+
+

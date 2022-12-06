@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 session_start();
 date_default_timezone_set('Asia/Jakarta');
 if(file_exists('../vendor/autoload.php'))
@@ -27,3 +29,4 @@ else
     load_page('errors/403');
 }
 die();
+
