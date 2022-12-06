@@ -28,6 +28,171 @@
  .hide-home {
 	padding-left: 10px; position: relative; opacity: 0 !important; top: 0px !important;
  }
+ .top-site-outer {
+  width: auto;
+  padding: 20px 16px 4px;
+  border-radius: 8px;
+  display: inline-block;
+}
+.top-site-outer .top-site-inner {
+  position: relative;
+}
+.top-site-outer .top-site-inner > a {
+  color: inherit;
+  display: block;
+  outline: none;
+  text-decoration: none;
+}
+.top-site-outer:is(:hover) .context-menu-button {
+  opacity: 1;
+}
+.top-site-outer .context-menu-button {
+  background-image: url("chrome://global/skin/icons/more.svg");
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  fill: var(--newtab-text-primary-color);
+  -moz-context-properties: fill;
+  height: 20px;
+  width: 20px;
+  inset-inline-end: -9px;
+  opacity: 0;
+  position: absolute;
+  top: -20px;
+  transition: opacity 200ms;
+}
+.top-site-outer .context-menu-button:is(:active, :focus) {
+  outline: 0;
+  opacity: 1;
+  background-color: var(--newtab-element-hover-color);
+  fill: var(--newtab-primary-action-background);
+}
+.top-site-outer .tile {
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  background-color: #FFF;
+  justify-content: center;
+  margin: 0 auto;
+  height: 120px;
+  width: 120px;
+  cursor: pointer;
+  position: relative;
+  align-items: center;
+  color: var(--newtab-text-secondary-color);
+  display: flex;
+  font-size: 32px;
+  font-weight: 200;
+  text-transform: uppercase;
+}
+.top-site-outer .tile .icon-wrapper {
+  border-radius: 4px;
+  width: 68px;
+  height: 68px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.top-site-outer .tile .icon-wrapper.letter-fallback::before {
+  content: attr(data-fallback);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  font-weight: 800;
+  transform: rotate(-10deg);
+  top: 6px;
+  position: relative;
+  color: #FFF;
+}
+.top-site-outer .top-site-icon {
+  background-color: var(--newtab-background-color-secondary);
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  position: absolute;
+}
+.top-site-outer .rich-icon {
+  background-size: cover;
+  height: 100%;
+  inset-inline-start: 0;
+  top: 0;
+  width: 100%;
+}
+.top-site-outer .default-icon,
+.top-site-outer .search-topsite {
+  background-size: 32px;
+  height: 32px;
+  width: 32px;
+  align-items: center;
+  display: flex;
+  font-size: 50px;
+  justify-content: center;
+}
+.top-site-outer .default-icon[data-fallback]::before,
+.top-site-outer .search-topsite[data-fallback]::before {
+  content: attr(data-fallback);
+}
+.top-site-outer .search-topsite {
+  background-image: url("chrome://global/skin/icons/search-glass.svg");
+  background-size: 16px;
+  background-color: var(--newtab-primary-action-background);
+  border-radius: 32px;
+  -moz-context-properties: fill;
+  fill: var(--newtab-primary-element-text-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition-duration: 150ms;
+  transition-property: background-size, bottom, inset-inline-end, height, width;
+  height: 32px;
+  width: 32px;
+  bottom: -6px;
+  inset-inline-end: -6px;
+}
+.top-site-outer.placeholder .tile {
+  box-shadow: 0 0 0 1px var(--newtab-inner-box-shadow-color);
+}
+.top-site-outer .title {
+  color: var(--newtab-text-primary-color);
+  padding-top: 8px;
+  font: caption;
+  text-align: center;
+  position: relative;
+}
+.top-site-outer .title .icon {
+  margin-inline-end: 2px;
+  fill: var(--newtab-text-primary-color);
+}
+.top-site-outer .title span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: bold;
+  color: #e7eae9;
+}
+.top-site-outer .title .sponsored-label {
+  color: var(--newtab-text-secondary-color);
+  font-size: 0.9em;
+}
+.top-site-outer .title:not(.sponsored) .sponsored-label {
+  visibility: hidden;
+}
+.top-site-outer.search-shortcut .rich-icon {
+  background-color: #FFF;
+}
+.top-site-outer .edit-button {
+  background-image: url("chrome://global/skin/icons/edit.svg");
+}
+.top-site-outer.dragged .tile *, .top-site-outer.dragged .tile::before {
+  display: none;
+}
+.top-site-outer.dragged .title {
+  visibility: hidden;
+}
+
  </style>
 </head>
 
@@ -42,10 +207,84 @@
 					<h3 class="main-phrase">BADAN PENDAPATAN DAERAH</h3>
 					<h1 class="main-phrase-2">KABUPATEN ASAHAN</h1>
 					<div class="modal-toggle">
+            <?php /*
 						<a href="#" id="modal-open-layanan" class="button-about"><span class="fa fa-print"></span> AMBIL ANTRIAN</a>
 						<a href="#" id="modal-open-pemerintah" class="button-about"><span class="fa fa-fire"></span> CEK PBB</a>
 						<a href="#" id="modal-open-publik" class="button-about"><span class="fa fa-edit"></span> KALKULATOR PBB</a>
 						<a href="#" id="modal-open-opd" class="button-about"><span class="fa fa-globe"></span> KALKULATOR BPTHB</a>
+            */ ?>
+            <div>
+              <ul class="top-sites-list">
+                <li class="top-site-outer">
+                  <div class="top-site-inner">
+                    <a class="top-site-button" href="#" id="modal-open-layanan" tabindex="0" draggable="true" data-is-sponsored-link="false">
+                      <div class="tile" aria-hidden="true">
+                        <div class="icon-wrapper" data-fallback="w">
+                          <div class="top-site-icon rich-icon" style="background-image: url('http://bphtb.asahankab.go.id:8182/media/icon/105.png');">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="title">
+                        <span dir="auto">
+                          AMBIL ANTRIAN
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+                <li class="top-site-outer">
+                  <div class="top-site-inner">
+                    <a class="top-site-button" href="#" id="modal-open-pemerintah" tabindex="0" draggable="true" data-is-sponsored-link="false">
+                      <div class="tile" aria-hidden="true">
+                        <div class="icon-wrapper" data-fallback="w">
+                          <div class="top-site-icon rich-icon" style="background-image: url('http://bphtb.asahankab.go.id:8182/media/icon/102.png');">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="title">
+                        <span dir="auto">
+                          CEK PBB
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+                <li class="top-site-outer">
+                  <div class="top-site-inner">
+                    <a class="top-site-button" href="#" id="modal-open-publik" tabindex="0" draggable="true" data-is-sponsored-link="false">
+                      <div class="tile" aria-hidden="true">
+                        <div class="icon-wrapper" data-fallback="w">
+                          <div class="top-site-icon rich-icon" style="background-image: url('http://bphtb.asahankab.go.id:8182/media/icon/104.png');">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="title">
+                        <span dir="auto">
+                          KALKULATOR PBB
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+                <li class="top-site-outer">
+                  <div class="top-site-inner">
+                    <a class="top-site-button" href="#" id="modal-open-opd" tabindex="0" draggable="true" data-is-sponsored-link="false">
+                      <div class="tile" aria-hidden="true">
+                        <div class="icon-wrapper" data-fallback="w">
+                          <div class="top-site-icon rich-icon" style="background-image: url('http://bphtb.asahankab.go.id:8182/media/icon/103.png');">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="title">
+                        <span dir="auto">
+                          KALKULATOR BPHTB
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
 					</div>
         </section>
 			</div>
