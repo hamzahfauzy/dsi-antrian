@@ -11,5 +11,5 @@ $db->update('queues',[
 ]);
 
 set_flash_msg(['success'=>'Antrian telah selesai di layani']);
-header('location:'.routeTo('crud/index',['table'=>'queues']));
+header('location:'.routeTo('queues/index'));
 die();
