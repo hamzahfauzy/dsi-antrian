@@ -36,6 +36,8 @@
 			var mainInner = $('#main .inner'),
 				modal = $('#modal-layanan');
 
+				clearAllInput()
+
 			mainInner.animate({ opacity: 0.08 }, 400, function(){
 				$('html,body').scrollTop(0);
 				modal.addClass('modal-active').fadeIn(400);
@@ -54,6 +56,8 @@
 		$('#modal-open-pemerintah').on('click', function(e) {
 			var mainInner = $('#main .inner'),
 				modal = $('#modal-pemerintah');
+
+				clearAllInput()
 
 			$("#nop").inputmask({"mask": "99.99.999.999.999-9999.9"});
 
@@ -75,6 +79,8 @@
 			var mainInner = $('#main .inner'),
 				modal = $('#modal-publik');
 
+				clearAllInput()
+
 			mainInner.animate({ opacity: 0.08 }, 400, function(){
 				$('html,body').scrollTop(0);
 				modal.addClass('modal-active').fadeIn(400);
@@ -92,6 +98,8 @@
 		$('#modal-open-opd').on('click', function(e) {
 			var mainInner = $('#main .inner'),
 				modal = $('#modal-opd');
+
+				clearAllInput()
 
 			mainInner.animate({ opacity: 0.08 }, 400, function(){
 				$('html,body').scrollTop(0);
@@ -166,3 +174,14 @@
 	});
 
 })(jQuery);
+
+
+function clearAllInput()
+{
+	var elements = document.getElementsByTagName("input");
+	for (var ii=0; ii < elements.length; ii++) {
+		if (elements[ii].type == "text") {
+			elements[ii].value = "";
+		}
+	}
+}

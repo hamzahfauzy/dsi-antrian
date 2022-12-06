@@ -346,19 +346,19 @@
 									<div class="contact-form">
 										<div class="form-group">
 											<label>Luas Tanah (M<sup>2</sup>) :</label>
-											<input name="form[luas_tanah]" value="" id="luasTanah" onkeyup="sumTanah();" onkeypress="return isNumberKey(event)" class="form-control" type="text" autocomplete="off">
+											<input name="form[luas_tanah]" placeholder="0" id="luasTanah" onkeyup="sumTanah();" onkeypress="return isNumberKey(event)" class="form-control" type="text" autocomplete="off">
 										</div>
 										<div class="form-group">
 											<label>NJOP Tanah Per M<sup>2</sup> :</label>
-											<input name="form[njop_tanah]" value="0" id="njopTanah" onkeyup="sumTanah();" onkeypress="return isNumberKey(event)" class="form-control"  type="text" autocomplete="off">
+											<input name="form[njop_tanah]" placeholder="0" id="njopTanah" onkeyup="sumTanah();" onkeypress="return isNumberKey(event)" class="form-control"  type="text" autocomplete="off">
 										</div>
 										<div class="form-group">
 											<label>Luas x NJOP Tanah :</label>
-											<input id="totalHasilNjopTanah" name="form[hasil_njop_tanah]" class="form-control" value="0" type="text" readonly="">
+											<input id="totalHasilNjopTanah" name="form[hasil_njop_tanah]" class="form-control" placeholder="0" type="text" readonly="">
 										</div>
 										<div class="form-group d-none">
 											<label>Total NJOP PBB :</label>
-											<input id="totalHasilNjop" name="form[hasil_njop]" value="0" type="text" class="form-control" readonly="">
+											<input id="totalHasilNjop" name="form[hasil_njop]" placeholder="0" type="text" class="form-control" readonly="">
 										</div>
 									</div>
 								</div>
@@ -366,15 +366,15 @@
 									<div class="contact-form">
 										<div class="form-group">
 											<label>Luas Bangunan (M<sup>2</sup>) :</label>
-											<input name="form[luas_bangunan]" value="0" id="luasBangunan" onkeyup="sumTanah();" onkeypress="return isNumberKey(event)" class="form-control" type="text" autocomplete="off" required="">
+											<input name="form[luas_bangunan]" placeholder="0" id="luasBangunan" onkeyup="sumTanah();" onkeypress="return isNumberKey(event)" class="form-control" type="text" autocomplete="off" required="">
 										</div>
 										<div class="form-group">
 											<label>NJOP Bangunan Per M<sup>2</sup> :</label>
-											<input name="form[njop_bangunan]" value="0" id="njopBangunan" onkeyup="sumTanah();" onkeypress="return isNumberKey(event)" class="form-control" type="text" autocomplete="off" required="">
+											<input name="form[njop_bangunan]" placeholder="0" id="njopBangunan" onkeyup="sumTanah();" onkeypress="return isNumberKey(event)" class="form-control" type="text" autocomplete="off" required="">
 										</div>
 										<div class="form-group">
 											<label>Luas x NJOP Bangunan :</label>
-											<input id="totalHasilNjopBangunan" name="form[hasil_njop_bangunan]" class="form-control" value="0" type="text" readonly="">
+											<input id="totalHasilNjopBangunan" name="form[hasil_njop_bangunan]" class="form-control" placeholder="0" type="text" readonly="">
 										</div>
 									</div>
 								</div>
@@ -455,17 +455,17 @@
 										<div class="form-group">
 											<input type="hidden" id="jumlahPerekaman">
 											<label style="float:left">Harga Transaksi/Nilai Pasar :</label>
-											<input name="form[harga_transaksi]" value="0" id="hargaTransaksi" onkeypress="return isNumberKey(event)" class="form-control" type="text" autocomplete="off">
+											<input name="form[harga_transaksi]" placeholder="0" id="hargaTransaksi" onkeypress="return isNumberKey(event)" class="form-control" type="text" autocomplete="off">
 										</div>
 										<div class="form-group" style="text-align:left">
 											<label>Nilai Perolehan Objek Pajak (NPOP) :</label>
 											<div class="msg-npop" style="font-size:15px;"><i><font color="#D32F2F">Pilih Jenis Perolehan terlebih dahulu </font></i></div>
-											<input type="text" readonly="" name="form[npop]" value="0" id="hasilNpop" onkeyup="sumBphtb();" onkeypress="return isNumberKey(event)" class="form-control input-npop">
+											<input type="text" readonly="" name="form[npop]" placeholder="0" id="hasilNpop" onkeyup="sumBphtb();" onkeypress="return isNumberKey(event)" class="form-control input-npop">
 										</div>
                     <div class="form-group" style="text-align:left">
 											<label>Nilai Perolehan Objek Pajak Tidak Kena Pajak (NPOPTKP) :</label>
 											<div id="vNpoptkp"><b>0</b></div>
-											<input name="form[npoptkp]" value="0" id="npoptkp" class="form-control" type="hidden" readonly="">
+											<input name="form[npoptkp]" placeholder="0" id="npoptkp" class="form-control" type="hidden" readonly="">
 										</div>
                     <div class="form-group" style="text-align:left">
 											<label>Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP) :</label>
@@ -483,7 +483,7 @@
 										</div>
                     <div class="form-group" style="text-align:left">
 											<label>Pengurangan (%) :</label>
-											<input type="text" name="form[pengurangan]" value="0" id="pengurangan" onkeyup="sumBphtb();" onkeypress="return isNumberKey(event)" class="form-control">
+											<input type="text" name="form[pengurangan]" placeholder="0" id="pengurangan" onkeyup="sumBphtb();" onkeypress="return isNumberKey(event)" class="form-control">
 										</div>
 										<div class="form-group" style="text-align:left">
 											<label>Total Pengurangan :</label>
