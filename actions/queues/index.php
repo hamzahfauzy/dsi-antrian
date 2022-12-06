@@ -122,6 +122,7 @@ if(isset($_GET['draw']))
 }
 
 $data = [];
+$stats = [];
 if(get_role(auth()->user->id)->name != 'administrator')
 {
     if(Session::get('pos'))
@@ -140,6 +141,17 @@ if(get_role(auth()->user->id)->name != 'administrator')
         'pos_id' => Session::get('pos'),
         'created_at' => ['LIKE','%'.date('Y-m-d').'%']
     ]);
+
+    $params = [];
+    if(Session::get('pos'))
+    {
+        $params = ['pos_id' => Session::get('pos')];
+    }
+
+    $stats = [
+        'queues_wait_today' => $db->exists('queues',array_merge($params,['status'=>'menunggu','created_at'=>['LIKE','%'.date('Y-m-d').'%']])),
+        'queues_called_today' => $db->exists('queues',array_merge($params,['status'=>'selesai','created_at'=>['LIKE','%'.date('Y-m-d').'%']])),
+    ];
 }
 
 return [
@@ -148,4 +160,5 @@ return [
     'fields' => $fields,
     'data' => $data,
     'total' => $total,
+    'stats' => $stats,
 ];

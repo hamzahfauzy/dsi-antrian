@@ -92,49 +92,5 @@
                 </div>
             </div>
         </div>
-
-        <div class="page-inner mt--5">
-            <h2>Statistik Hari ini</h2>
-            <div class="row row-card-no-pd">
-                <div class="col-sm-6 col-12">
-                    <div class="card card-stats card-round">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="icon-big text-center">
-                                        <i class="flaticon-error text-danger"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Jumlah Antrian Menunggu</p>
-                                        <h4 class="card-title"><?=number_format($data['queues_wait_today'])?></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-12">
-                    <div class="card card-stats card-round">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-5">
-                                    <div class="icon-big text-center">
-                                        <i class="flaticon-twitter text-primary"></i>
-                                    </div>
-                                </div>
-                                <div class="col-7 col-stats">
-                                    <div class="numbers">
-                                        <p class="card-category">Jumlah Antrian Terpanggil</p>
-                                        <h4 class="card-title"><?=number_format($data['queues_called_today'])?></h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 <?php load_templates('layouts/bottom') ?>
