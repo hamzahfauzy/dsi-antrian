@@ -59,7 +59,7 @@
                         <div class="card-body text-center">
                             <?php if($data): ?>
                             <h3>No Antrian Sekarang</h3>
-                            <h1><?= $data->number ?></h1>
+                            <h1><?=$data->pos->code?> <?= $data->number ?></h1>
                             <button class="btn btn-success" onclick="responsiveVoice.speak('Nomor Antrian. <?=$data->pos->code?> <?=$data->number?>. Silahkan ke. <?=$data->pos->name?>','Indonesian Female');">Panggil</button>
                             <a href="<?=routeTo('queues/finish',['id'=>$data->id])?>" onclick="if(confirm('Apakah anda yakin telah menyelesaikan pelayanan ini ?')){return true}else{return false}" class="btn btn-primary">Selesai</a>
                             <?php else: ?>

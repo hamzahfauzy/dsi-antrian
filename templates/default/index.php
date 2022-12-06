@@ -64,7 +64,7 @@
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
                                         <p class="card-category">Jumlah Antrian Menunggu</p>
-                                        <h4 class="card-title"><?=number_format($data['queues_wait'])?></h4>
+                                        <h4 class="card-title"><?=number_format($data['queues_wait_today'])?></h4>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                 <div class="col-7 col-stats">
                                     <div class="numbers">
                                         <p class="card-category">Jumlah Antrian Terpanggil</p>
-                                        <h4 class="card-title"><?=number_format($data['queues_called'])?></h4>
+                                        <h4 class="card-title"><?=number_format($data['queues_called_today'])?></h4>
                                     </div>
                                 </div>
                             </div>

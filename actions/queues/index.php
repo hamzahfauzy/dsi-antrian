@@ -123,6 +123,7 @@ if(isset($_GET['draw']))
 
 $data = [];
 $stats = [];
+$total = 0;
 if(get_role(auth()->user->id)->name != 'administrator')
 {
     if(Session::get('pos'))
