@@ -8,6 +8,17 @@ $success_msg = get_flash_msg('success');
 
 if(request() == 'POST')
 {
+    if(isset($_FILES['file']) && !empty($_FILES['file']['name']))
+    {
+        Validation::run([
+            'file' => [
+                'required','file','mime:mp4'
+            ]
+        ], $_FILES);
+        
+        $_POST['app']['video_slide'] = do_upload($_FILES['file'], 'uploads/screen_savers');
+    }
+
     $db->update('application',$_POST['app'],[
         'id' => $data->id
     ]);

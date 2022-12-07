@@ -193,10 +193,80 @@
   visibility: hidden;
 }
 
- </style>
+.berhasil {
+				
+				display: none;
+                position: fixed;
+                border: 1px solid transparent;
+				border-radius: 4px;
+				border-color: #d6e9c6;
+                width: 70%;
+                top: 30%;
+                left: 15%;
+				right:25%;
+                padding: 15px 10px;
+				font-size:200%;
+                background-color: #dff0d8;
+				font-weight:bold;
+                text-align: center;
+				z-index:9999999999;
+				color:#2b542c;
+				font-weight:bold;
+				text-transform:uppercase;
+}
+
+.tidakberhasil {
+				
+				display: none;
+                position: fixed;
+                border: 1px solid transparent;
+				border-radius: 4px;
+				border-color: #d6e9c6;
+                width: 70%;
+                top: 30%;
+                left: 15%;
+				right:25%;
+                padding: 15px 10px;
+				font-size:200%;
+                background-color:#f2dede;
+				font-weight:bold;
+                text-align: center;
+				z-index:9999999999;
+				color:#a94442;
+				font-weight:bold;
+				text-transform:uppercase;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+}
+
+.overlay {
+	position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  height:100%;
+  top:0;
+}
+
+</style>
 </head>
 
 <body>
+<?php if(app('video_slide')): ?>
+<video autoplay muted loop id="myVideo">
+  <source src="<?=asset(app('video_slide'))?>" type="video/mp4">
+  Your browser does not support HTML5 video.
+</video>
+<div class="overlay"></div>
+<?php endif ?>
+
 	<div class="wrap">
 		<div id="main">
 			<div class="inner fade-in hide-home" style="padding-left:10px;">
@@ -297,6 +367,8 @@
 				</div>
 				<section class="content container-fluid">
 					<h1 class="section-title">Pilih Pelayanan</h1>
+					<div class="berhasil">Silahkan Ambil Tiket Antrian Anda</div>
+					<div class="tidakberhasil">Printer tidak terhubung</div>
 					<?php foreach($services as $service): ?>
             <button class="button-about button-layanan" onclick="ambilAntrian(<?=$service->id?>)"><span class="fa fa-check"></span> <?=$service->name?></button>
 					<?php endforeach ?>
@@ -519,7 +591,7 @@
 	<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
   <script type="text/javascript">
     $(document).ready( function(){
-      $.backstretch([
+        $.backstretch([
 			<?php foreach($slides as $slide): ?>
   			'<?=asset($slide->file)?>',
 			<?php endforeach ?>
@@ -620,12 +692,17 @@
 				var response = await request.json()
 				if(response.status == 'success')
 				{
-					alert('Silahkan Ambil Tiket Antrian Anda')
-					$('#modal-layanan').removeClass('modal-active').hide();
-					$('#main .inner').animate({ opacity: 3 });
+					$(".berhasil").fadeIn('slow');
+					setTimeout(function(){
+						$(".berhasil").fadeOut('slow');
+						$('#modal-layanan').removeClass('modal-active').hide();
+						$('#main .inner').animate({ opacity: 3 });
+					}, 2000);
 				}
 			} catch (error) {
-				alert('error')
+				// alert('error')
+				$(".tidakberhasil").fadeIn('slow')
+				setTimeout(function(){$(".tidakberhasil").fadeOut('slow');}, 2000)
 			}
 		}
 	}
@@ -640,6 +717,9 @@
 			{
 				document.querySelector('#main > .inner').classList.toggle('hide-home')
 				slideJs.steady = true
+				$.backstretch('<?=asset($slides[0]->file)?>');
+				$('#myVideo').hide();
+				$('.overlay').hide();
 			}
 
 			if(slideJs._steadyTimeout)
@@ -653,6 +733,16 @@
 				$('#modal-opd').removeClass('modal-active').hide();
 				$('#modal-public').removeClass('modal-active').hide();
 				$('#main .inner').animate({ opacity: 3 });
+				$.backstretch([
+					<?php foreach($slides as $slide): ?>
+					'<?=asset($slide->file)?>',
+					<?php endforeach ?>
+				], {
+					fade: 1600,
+					duration: 5000
+				});
+				$('#myVideo').show();
+				$('.overlay').show();
 				slideJs.steady = false
 			}, slideJs.steadyTimeout)
 		}

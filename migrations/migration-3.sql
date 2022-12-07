@@ -1,0 +1,1 @@
+ALTER TABLE application ADD COLUMN video_slide VARCHAR(100) DEFAULT NULL;
