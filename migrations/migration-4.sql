@@ -1,0 +1,2 @@
+ALTER TABLE application ADD COLUMN standby_mode VARCHAR(100) DEFAULT NULL;
+ALTER TABLE application ADD COLUMN background_image VARCHAR(100) DEFAULT NULL;

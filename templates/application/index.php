@@ -21,6 +21,9 @@
                             <?php if($success_msg): ?>
                             <div class="alert alert-success"><?=$success_msg?></div>
                             <?php endif ?>
+                            <?php if($error_msg): ?>
+                            <div class="alert alert-danger"><?=$error_msg?></div>
+                            <?php endif ?>
                             <form action="" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="app[id]" value="<?=$data->id?>">
                                 <div class="form-group">
@@ -40,8 +43,19 @@
                                     <input type="email" name="app[email]" class="form-control" value="<?=$data->email?>">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Video Slide <?=$data->video_slide?'<a href="'.asset($data->video_slide).'">Lihat File</a>':''?></label>
+                                    <label for="">Stand by Mode</label>
+                                    <select name="app[standby_mode]" id="" class="form-control">
+                                        <option <?=$data->standby_mode=='Screen Saver'?'selected=""':''?>>Screen Saver</option>
+                                        <option <?=$data->standby_mode=='Video'?'selected=""':''?>>Video</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Video Slide <?=$data->video_slide?'<a href="'.asset($data->video_slide).'">Lihat File</a> - <a href="'.routeTo('application/delete-slide').'">Hapus File</a>':''?></label>
                                     <input type="file" name="file" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Gambar Background <?=$data->background_image?'<a href="'.asset($data->background_image).'">Lihat File</a> - <a href="'.routeTo('application/delete-background').'">Hapus File</a>':''?></label>
+                                    <input type="file" name="background_image" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary">Submit</button>

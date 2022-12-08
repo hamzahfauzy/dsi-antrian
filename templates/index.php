@@ -259,7 +259,7 @@
 </head>
 
 <body>
-<?php if(app('video_slide')): ?>
+<?php if(app('video_slide') && app('standby_mode') == 'Video'): ?>
 <video autoplay muted loop id="myVideo">
   <source src="<?=asset(app('video_slide'))?>" type="video/mp4">
   Your browser does not support HTML5 video.
@@ -717,9 +717,11 @@
 			{
 				document.querySelector('#main > .inner').classList.toggle('hide-home')
 				slideJs.steady = true
-				$.backstretch('<?=asset($slides[0]->file)?>');
+				$.backstretch('<?=app('background_image')??'https://wallpapercave.com/wp/wp7632525.jpg'?>');
+				<?php if(app('video_slide') && app('standby_mode') == 'Video'): ?>
 				$('#myVideo').hide();
 				$('.overlay').hide();
+				<?php endif ?>
 			}
 
 			if(slideJs._steadyTimeout)
@@ -733,6 +735,11 @@
 				$('#modal-opd').removeClass('modal-active').hide();
 				$('#modal-public').removeClass('modal-active').hide();
 				$('#main .inner').animate({ opacity: 3 });
+
+				<?php if(app('video_slide') && app('standby_mode') == 'Video'): ?>
+				$('#myVideo').show();
+				$('.overlay').show();
+				<?php else: ?>
 				$.backstretch([
 					<?php foreach($slides as $slide): ?>
 					'<?=asset($slide->file)?>',
@@ -741,8 +748,7 @@
 					fade: 1600,
 					duration: 5000
 				});
-				$('#myVideo').show();
-				$('.overlay').show();
+				<?php endif ?>
 				slideJs.steady = false
 			}, slideJs.steadyTimeout)
 		}
