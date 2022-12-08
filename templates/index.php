@@ -591,6 +591,7 @@
 	<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
   <script type="text/javascript">
     $(document).ready( function(){
+		<?php if(app('standby_mode') == 'Screen Saver'): ?>
         $.backstretch([
 			<?php foreach($slides as $slide): ?>
   			'<?=asset($slide->file)?>',
@@ -599,6 +600,7 @@
   			fade: 1600,
   			duration: 5000
   		});
+		<?php endif ?>
 
       $('ul.tabs li').click(function(){
     		var tab_id = $(this).attr('data-tab');
