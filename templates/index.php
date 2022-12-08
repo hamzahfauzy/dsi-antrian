@@ -739,10 +739,10 @@
 			slideJs._steadyTimeout = setTimeout(ev => {
 				slideJs.steady = false
 				document.querySelector('#main > .inner').classList.toggle('hide-home')
-				$('#modal-pemerintah').removeClass('modal-active').hide();
-				$('#modal-layanan').removeClass('modal-active').hide();
-				$('#modal-opd').removeClass('modal-active').hide();
-				$('#modal-public').removeClass('modal-active').hide();
+				$('#modal-pemerintah').removeClass('modal-active').fadeOut();
+				$('#modal-layanan').removeClass('modal-active').fadeOut();
+				$('#modal-opd').removeClass('modal-active').fadeOut();
+				$('#modal-public').removeClass('modal-active').fadeOut();
 				$('#main .inner').animate({ opacity: 3 });
 
 				<?php if(app('video_slide') && app('standby_mode') == 'Video'): ?>
