@@ -719,6 +719,7 @@
 			{
 				document.querySelector('#main > .inner').classList.toggle('hide-home')
 				slideJs.steady = true
+				$.backstretch('destroy');
 				$.backstretch('<?=app('background_image')??'https://wallpapercave.com/wp/wp7632525.jpg'?>');
 				<?php if(app('video_slide') && app('standby_mode') == 'Video'): ?>
 				$('#myVideo').hide();
@@ -731,6 +732,7 @@
 				clearTimeout(slideJs._steadyTimeout)
 			}
 			slideJs._steadyTimeout = setTimeout(ev => {
+				slideJs.steady = false
 				document.querySelector('#main > .inner').classList.toggle('hide-home')
 				$('#modal-pemerintah').removeClass('modal-active').hide();
 				$('#modal-layanan').removeClass('modal-active').hide();
@@ -742,6 +744,7 @@
 				$('#myVideo').show();
 				$('.overlay').show();
 				<?php else: ?>
+				$.backstretch('destroy');
 				$.backstretch([
 					<?php foreach($slides as $slide): ?>
 					'<?=asset($slide->file)?>',
@@ -751,7 +754,6 @@
 					duration: 5000
 				});
 				<?php endif ?>
-				slideJs.steady = false
 			}, slideJs.steadyTimeout)
 		}
 	}
