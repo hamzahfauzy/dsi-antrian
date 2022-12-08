@@ -369,7 +369,7 @@
 				<section class="content container-fluid">
 					<h1 class="section-title">Pilih Pelayanan</h1>
 					<?php foreach($services as $service): ?>
-            <button class="button-about button-layanan" onclick="ambilAntrian(<?=$service->id?>)"><span class="fa fa-check"></span> <?=$service->name?></button>
+            <button class="button-about button-layanan" onclick="ambilAntrian(<?=$service->id?>, this)"><span class="fa fa-check"></span> <?=$service->name?></button>
 					<?php endforeach ?>
 				</section>
 			</div>
@@ -676,34 +676,54 @@
 		}
 	}
 
-	async function ambilAntrian(service_id)
+	var isAmbilAntrian = false
+	async function ambilAntrian(service_id, el)
 	{
 		// alert(service_id)
-		var request = await fetch('api/get-antrian',{
-			method:'POST',
-			body:'service_id='+service_id,
-			headers:{
-				'content-type':'application/x-www-form-urlencoded'
-			}
-		})
-
-		if(request.ok)
+		if(isAmbilAntrian)
 		{
-			try {
-				var response = await request.json()
-				if(response.status == 'success')
-				{
-					$(".berhasil").fadeIn('slow');
-					$('#modal-layanan').removeClass('modal-active').fadeOut(400, function(){
-						$('#main .inner').animate({ opacity: 3 }, 400);
-					});
+			var old = $(".tidakberhasil").html()
+			$(".tidakberhasil").html('Mohon Maaf! Sedang ada pengambilan antrian yang di proses')
+			$(".tidakberhasil").fadeIn('slow')
+			setTimeout(function(){
+				$(".tidakberhasil").fadeOut('slow');
+			}, 2000)
+		}
+		else
+		{
+			var old = el.innerHTML
+			el.innerHTML = "Sedang Memproses. Silahkan Tunggu!"
+			isAmbilAntrian = true
+			var request = await fetch('api/get-antrian',{
+				method:'POST',
+				body:'service_id='+service_id,
+				headers:{
+					'content-type':'application/x-www-form-urlencoded'
 				}
-			} catch (error) {
-				// alert('error')
-				$(".tidakberhasil").fadeIn('slow')
-				setTimeout(function(){
-					$(".tidakberhasil").fadeOut('slow');
-				}, 2000)
+			})
+	
+			if(request.ok)
+			{
+				el.innerHTML = old
+				try {
+					var response = await request.json()
+					if(response.status == 'success')
+					{
+						$(".berhasil").fadeIn('slow');
+						$('#modal-layanan').removeClass('modal-active').fadeOut(400, function(){
+							$('#main .inner').animate({ opacity: 3 }, 400);
+						});
+					}
+				} catch (error) {
+					// alert('error')
+					$(".tidakberhasil").html('Printer tidak terhubung')
+					$(".tidakberhasil").fadeIn('slow')
+					setTimeout(function(){
+						$(".tidakberhasil").fadeOut('slow');
+					}, 2000)
+				}
+
+				isAmbilAntrian = false
 			}
 		}
 	}
