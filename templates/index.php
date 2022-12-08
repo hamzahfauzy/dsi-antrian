@@ -171,7 +171,7 @@
   white-space: nowrap;
   font-size: 16px;
   font-weight: bold;
-  color: #e7eae9;
+  color: #2b2b2b;
 }
 .top-site-outer .title .sponsored-label {
   color: var(--newtab-text-secondary-color);
@@ -194,7 +194,7 @@
 }
 
 .berhasil {
-				
+
 				display: none;
                 position: fixed;
                 border: 1px solid transparent;
@@ -216,7 +216,7 @@
 }
 
 .tidakberhasil {
-				
+
 				display: none;
                 position: fixed;
                 border: 1px solid transparent;
@@ -241,7 +241,7 @@
   position: fixed;
   right: 0;
   bottom: 0;
-  min-width: 100%; 
+  min-width: 100%;
   min-height: 100%;
 }
 
@@ -704,7 +704,10 @@
 			} catch (error) {
 				// alert('error')
 				$(".tidakberhasil").fadeIn('slow')
-				setTimeout(function(){$(".tidakberhasil").fadeOut('slow');}, 2000)
+				setTimeout(function(){
+          $(".tidakberhasil").fadeOut('slow');
+          $('#modal-layanan').removeClass('modal-active').hide();
+        }, 2000);
 			}
 		}
 	}
