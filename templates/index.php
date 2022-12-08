@@ -702,14 +702,8 @@
 				// alert('error')
 				$(".tidakberhasil").fadeIn('slow')
 				setTimeout(function(){
-<<<<<<< HEAD
-          $(".tidakberhasil").fadeOut('slow');
-          $('#modal-layanan').removeClass('modal-active').hide();
-        }, 2000);
-=======
 					$(".tidakberhasil").fadeOut('slow');
 				}, 2000)
->>>>>>> 67bf10c45dbb366b7d466ea38f13bf6edbc306ff
 			}
 		}
 	}
