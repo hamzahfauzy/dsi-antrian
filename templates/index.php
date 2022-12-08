@@ -266,7 +266,8 @@
 </video>
 <div class="overlay"></div>
 <?php endif ?>
-
+	<div class="berhasil">Silahkan Ambil Tiket Antrian Anda</div>
+	<div class="tidakberhasil">Printer tidak terhubung</div>
 	<div class="wrap">
 		<div id="main">
 			<div class="inner fade-in hide-home" style="padding-left:10px;">
@@ -367,8 +368,6 @@
 				</div>
 				<section class="content container-fluid">
 					<h1 class="section-title">Pilih Pelayanan</h1>
-					<div class="berhasil">Silahkan Ambil Tiket Antrian Anda</div>
-					<div class="tidakberhasil">Printer tidak terhubung</div>
 					<?php foreach($services as $service): ?>
             <button class="button-about button-layanan" onclick="ambilAntrian(<?=$service->id?>)"><span class="fa fa-check"></span> <?=$service->name?></button>
 					<?php endforeach ?>
@@ -695,19 +694,22 @@
 				if(response.status == 'success')
 				{
 					$(".berhasil").fadeIn('slow');
-					setTimeout(function(){
-						$(".berhasil").fadeOut('slow');
-						$('#modal-layanan').removeClass('modal-active').hide();
-						$('#main .inner').animate({ opacity: 3 });
-					}, 2000);
+					$('#modal-layanan').removeClass('modal-active').fadeOut(400, function(){
+						$('#main .inner').animate({ opacity: 3 }, 400);
+					});
 				}
 			} catch (error) {
 				// alert('error')
 				$(".tidakberhasil").fadeIn('slow')
 				setTimeout(function(){
+<<<<<<< HEAD
           $(".tidakberhasil").fadeOut('slow');
           $('#modal-layanan').removeClass('modal-active').hide();
         }, 2000);
+=======
+					$(".tidakberhasil").fadeOut('slow');
+				}, 2000)
+>>>>>>> 67bf10c45dbb366b7d466ea38f13bf6edbc306ff
 			}
 		}
 	}
