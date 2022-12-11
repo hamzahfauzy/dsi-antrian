@@ -30,7 +30,7 @@
  }
  .top-site-outer {
   width: auto;
-  padding: 20px 16px 4px;
+  padding: 20px 26px 4px;
   border-radius: 8px;
   display: inline-block;
 }
@@ -413,7 +413,7 @@
 					<div class="bg-white">
 						<div class="calculator">
 							<div class="row">
-								<div class="one-half wow fadeIn" data-wow-delay="0.10s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
+								<div class="one-four wow fadeIn" data-wow-delay="0.10s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
 									<div class="contact-form">
 										<div class="form-group">
 											<label>Luas Tanah (M<sup>2</sup>) :</label>
@@ -427,13 +427,15 @@
 											<label>Luas x NJOP Tanah :</label>
 											<input id="totalHasilNjopTanah" name="form[hasil_njop_tanah]" class="form-control" placeholder="0" type="text" readonly="">
 										</div>
+                    <?php /*
 										<div class="form-group d-none">
 											<label>Total NJOP PBB :</label>
-											<input id="totalHasilNjop" name="form[hasil_njop]" placeholder="0" type="text" class="form-control" readonly="">
-										</div>
+
+										</div> */ ?>
+                    <input id="totalHasilNjop" name="form[hasil_njop]" placeholder="0" type="hidden" class="form-control" readonly>
 									</div>
 								</div>
-								<div class="one-half wow fadeIn" data-wow-delay="0.10s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
+								<div class="one-four wow fadeIn" data-wow-delay="0.10s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
 									<div class="contact-form">
 										<div class="form-group">
 											<label>Luas Bangunan (M<sup>2</sup>) :</label>
@@ -449,30 +451,26 @@
 										</div>
 									</div>
 								</div>
-                <div class="row">
-                  <div class="one">
-                    <div class="one-half">
-                      <div class="form-group">
-    										<label for="">NJOP Sebagai Dasar Pengenaan PBB</label>
-    										<p id="njop_dasar" class="calc_value">0</p>
-    									</div>
-    									<div class="form-group">
-    										<label for="">NJOPTKP (NJOP Tidak Kena Pajak)</label>
-    										<p id="njoptkp" class="calc_value">0</p>
-    									</div>
-                    </div>
-                    <div class="one-half">
-    									<div class="form-group">
-    										<label for="">NJOP untuk perhitungan PBB</label>
-    										<p id="njop_pbb" class="calc_value">0</p>
-    									</div>
-    									<div class="form-group">
-    										<label for="">Jumlah Pembayaran PBB <span id="persen_pbb">0,10%</span></label>
-    										<p id="jumlah_pbb" class="calc_value">0</p>
-    									</div>
-    								</div>
-    							</div>
-    						</div>
+                <div class="one-four">
+                  <div class="form-group">
+                    <label for="">NJOP Sebagai Dasar Pengenaan PBB</label>
+                    <p id="njop_dasar" class="calc_value">0</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="">NJOPTKP (NJOP Tidak Kena Pajak)</label>
+                    <p id="njoptkp" class="calc_value">0</p>
+                  </div>
+                </div>
+                <div class="one-four">
+                  <div class="form-group">
+                    <label for="">NJOP untuk perhitungan PBB</label>
+                    <p id="njop_pbb" class="calc_value">0</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Jumlah Pembayaran PBB <span id="persen_pbb">0,10%</span></label>
+                    <p id="jumlah_pbb" class="calc_value">0</p>
+                  </div>
+                </div>
               </div>
             </section>
           </div>
@@ -489,7 +487,7 @@
 					<div class="bg-white">
 						<div class="calculator">
 							<div class="row">
-								<div class="one-half wow fadeIn" data-wow-delay="0.10s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
+								<div class="one-third">
 									<div class="contact-form">
 										<div class="form-group">
 											<label style="float:left">Jenis Hak :</label>
@@ -533,41 +531,47 @@
 											<div class="msg-npop" style="font-size:15px;"><i><font color="#D32F2F">Pilih Jenis Perolehan terlebih dahulu </font></i></div>
 											<input type="text" readonly="" name="form[npop]" placeholder="0" id="hasilNpop" onkeyup="sumBphtb();" onkeypress="return isNumberKey(event)" class="form-control input-npop">
 										</div>
-                    <div class="form-group" style="text-align:left">
-											<label>Nilai Perolehan Objek Pajak Tidak Kena Pajak (NPOPTKP) :</label>
-											<div id="vNpoptkp" class="calc_value"><b>0</b></div>
-											<input name="form[npoptkp]" placeholder="0" id="npoptkp" class="form-control" type="hidden" readonly="">
-										</div>
-                    <div class="form-group" style="text-align:left">
-											<label>Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP) :</label>
-											<div id="vHasilNpopkp" class="calc_value"><b>0</b></div>
-											<input name="form[npopkp]" value="" id="hasilNpopkp" class="form-control" type="hidden" readonly="">
-										</div>
+
 									</div>
 								</div>
-								<div class="one-half wow fadeIn" data-wow-delay="0.10s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
-									<div class="contact-form">
-										<div class="form-group" style="text-align:left">
+                <div class="one-third">
+                  <div class="contact-form">
+                    <div class="form-group" style="text-align:left">
+                      <label>Nilai Perolehan Objek Pajak Tidak Kena Pajak (NPOPTKP) :</label>
+                      <div id="vNpoptkp" class="calc_value" style="font-size:30px; margin-top:-7px; margin-bottom:-8px;"><b>0</b></div>
+                      <input name="form[npoptkp]" placeholder="0" id="npoptkp" class="form-control" type="hidden" readonly="">
+                    </div>
+                    <div class="form-group" style="text-align:left">
+                      <label>Nilai Perolehan Objek Pajak Kena Pajak (NPOPKP) :</label>
+                      <div id="vHasilNpopkp" class="calc_value" style="font-size:30px; margin-top:-7px; margin-bottom:-8px;"><b>0</b></div>
+                      <input name="form[npopkp]" value="" id="hasilNpopkp" class="form-control" type="hidden" readonly="">
+                    </div>
+                    <div class="form-group" style="text-align:left">
 											<label>Bea Perolehan Hak atas Tanah dan Bangunan yang terutang :</label>
-											<div id="vBphtbTerhutang" class="calc_value"><b>0</b></div>
+											<div id="vBphtbTerhutang" class="calc_value" style="font-size:30px; margin-top:-7px; margin-bottom:-8px;"><b>0</b></div>
 											<input name="form[bphtb_terhutang]" value="" id="bphtbTerhutang" class="form-control" type="hidden" readonly="">
 										</div>
+                  </div>
+                </div>
+								<div class="one-third">
+									<div class="contact-form">
                     <div class="form-group" style="text-align:left">
 											<label>Pengurangan (%) :</label>
 											<input type="text" name="form[pengurangan]" placeholder="0" id="pengurangan" onkeyup="sumBphtb();" onkeypress="return isNumberKey(event)" class="form-control">
 										</div>
 										<div class="form-group" style="text-align:left">
 											<label>Total Pengurangan :</label>
-											<div id="vTotalPengurangan" class="calc_value"><b>0</b></div>
+											<div id="vTotalPengurangan" class="calc_value" style="font-size:30px; margin-top:-7px; margin-bottom:-8px;"><b>0</b></div>
 											<input name="form[total_pengurangan]" value="" id="totalPengurangan" class="form-control" type="hidden" readonly="">
 										</div>
 										<div class="form-group" style="text-align:left">
 											<label>Pengenaan BPHTB :</label>
-											<div id="vBphtb" class="calc_value" style="font-style: italic; font-size:40px;"><b>0</b></div>
+											<div id="vBphtb" class="calc_value" style="font-style: italic; font-size:40px; margin-top:-12px; margin-bottom:-8px;"><b>0</b></div>
 											<input name="form[bphtb]" value="" id="bphtb" class="form-control" type="hidden" readonly="">
 										</div>
 									</div>
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -701,7 +705,7 @@
 					'content-type':'application/x-www-form-urlencoded'
 				}
 			})
-	
+
 			if(request.ok)
 			{
 				el.innerHTML = old
