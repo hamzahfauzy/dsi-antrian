@@ -1,5 +1,6 @@
 <div class="pbb-result-container">
     <?php if(!empty($data)): ?>
+    <?php if((isset($data->status) && $data->status != 'error')) : ?>
     <?php foreach($data->years as $year): ?>
     <button class="btn mb-2 <?=$data->pbb->tahun == $year ? 'btn-primary' : 'btn-success'?>" onclick="cekPbbWithYear('<?=$data->pbb->nop?>','<?=$year?>')"><?=$year?></button>
     <?php endforeach ?>
@@ -92,5 +93,8 @@
             </tr>
         </tbody>
     </table>
+    <?php else: ?>
+    <center><i><?=$data->msg?></i></center>
+    <?php endif ?>
     <?php endif ?>
 </div>
