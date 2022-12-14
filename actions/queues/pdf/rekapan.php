@@ -28,8 +28,8 @@
 <img src="<?=$logo2?>" alt="" style="width:100px;height:120px;float:right;margin-top:-120px;" />
 <div style="height:20px"></div>
 <hr>
-<h3 align="center" style="margin-bottom:0;">REKAPITULASI</h3>
-<p align="center">Tanggal Awal : <b><?=date('d-m-Y', strtotime($start_date))?></b> | Tanggal Akhir : <b><?=date('d-m-Y',strtotime($end_date))?></b></p>
+<h3 align="center" style="margin-bottom:0;">REKAPITULASI ANTRIAN</h3>
+<p align="center">Periode <b><?=date('d-m-Y', strtotime($start_date))?></b> s/d <b><?=date('d-m-Y',strtotime($end_date))?></b><br><?=date('H:i:s')?></p>
 <?php foreach($pos as $p): ?>
 <h4><?=$p->name?></h4>
 <table id="customers" style="width:100%;">
