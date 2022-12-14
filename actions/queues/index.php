@@ -1,4 +1,5 @@
 <?php
+use Spipu\Html2Pdf\Html2Pdf;
 
 $table = 'queues';
 Page::set_title(_ucwords(__($table)));
@@ -9,6 +10,90 @@ $fields = config('fields')[$table];
 
 if(file_exists('../actions/'.$table.'/override-index-fields.php'))
     $fields = require '../actions/'.$table.'/override-index-fields.php';
+
+$start_date = isset($_GET['start_date']) ? $_GET['start_date'] : date('Y-m').'-01';
+$end_date = isset($_GET['end_date']) ? $_GET['end_date'] : date('Y-m-d');
+$pos_id = isset($_GET['pos_id']) ? $_GET['pos_id'] : '';
+$service_id = isset($_GET['service_id']) ? $_GET['service_id'] : '';
+$status = isset($_GET['status']) ? $_GET['status'] : '';
+
+$pos = $db->all('pos');
+
+
+if(isset($_GET['laporan']))
+{
+    $where = "WHERE (created_at BETWEEN '$start_date 00:00:00' AND '$end_date 23:59:59')";
+
+    if($pos_id)
+    {
+        $where .= " AND pos_id=$pos_id";
+    }
+    
+    if($service_id)
+    {
+        $where .= " AND service_id=$service_id";
+    }
+    
+    if($status)
+    {
+        $where .= " AND status='$status'";
+    }
+
+    $db->query = "SELECT * FROM $table $where ORDER BY created_at DESC, status ASC, `number` ASC, pos_id ASC";
+    $data  = $db->exec('all');
+
+    $path = 'logo.png';
+    $type = pathinfo($path, PATHINFO_EXTENSION);
+    $data_logo = file_get_contents($path);
+    $logo = 'data:image/' . $type . ';base64,' . base64_encode($data_logo);
+
+    ob_start();
+    require 'pdf/laporan.php';
+    $html = ob_get_contents(); 
+    ob_end_clean();
+    
+    $html2pdf = new Html2Pdf();
+    $html2pdf->writeHTML($html);
+    $html2pdf->output();
+
+    die();
+}
+    
+if(isset($_GET['rekapan']))
+{
+    // jumlah pos -> layanan -> menunggu | selesai
+    $pos = array_map(function($p) use ($db, $start_date, $end_date){
+        $services = $db->all('services',['pos_id'=>$p->id]);
+        $services = array_map(function($service) use ($db, $start_date, $end_date){
+            $db->query = "SELECT * FROM queues WHERE status='menunggu' AND (created_at BETWEEN '$start_date 00:00:00' AND '$end_date 23:59:59') AND pos_id=$service->pos_id AND service_id=$service->id";
+            $service->queues_wait = $db->exec('exists');
+
+            $db->query = "SELECT * FROM queues WHERE status='selesai' AND (created_at BETWEEN '$start_date 00:00:00' AND '$end_date 23:59:59') AND pos_id=$service->pos_id AND service_id=$service->id";
+            $service->queues_finish = $db->exec('exists');
+            return $service;
+        }, $services);
+
+        $p->services = $services;
+
+        return $p;
+    }, $pos);
+
+    $path = 'logo.png';
+    $type = pathinfo($path, PATHINFO_EXTENSION);
+    $data_logo = file_get_contents($path);
+    $logo = 'data:image/' . $type . ';base64,' . base64_encode($data_logo);
+
+    ob_start();
+    require 'pdf/rekapan.php';
+    $html = ob_get_contents(); 
+    ob_end_clean();
+    
+    $html2pdf = new Html2Pdf();
+    $html2pdf->writeHTML($html);
+    $html2pdf->output();
+
+    die();
+}
 
 if(isset($_GET['draw']))
 {
@@ -30,17 +115,32 @@ if(isset($_GET['draw']))
     $orderKey = $order[0]['column']-1;
     $orderKey = $orderKey == -1 ? 'id' : $columns[$order[0]['column']-1];
 
-    $where = "";
+    $where = "WHERE (created_at BETWEEN '$start_date 00:00:00' AND '$end_date 23:59:59')";
 
-    if(!empty($search))
+    if($pos_id != '')
+    {
+        $where .= " AND pos_id=$pos_id";
+    }
+    
+    if($service_id != '')
+    {
+        $where .= " AND service_id=$service_id";
+    }
+    
+    if($status != '')
+    {
+        $where .= " AND status='$status'";
+    }
+    
+    if($search_columns && $search)
     {
         $_where = [];
         foreach($search_columns as $col)
         {
             $_where[] = "$col LIKE '%$search%'";
         }
-
-        $where = "WHERE (".implode(' OR ',$_where).")";
+    
+        $where = " AND (".implode(' OR ',$_where).")";
     }
 
     if(file_exists('../actions/'.$table.'/override-index.php'))
@@ -162,4 +262,10 @@ return [
     'data' => $data,
     'total' => $total,
     'stats' => $stats,
+    'pos' => $pos,
+    'start_date' => $start_date,
+    'end_date' => $end_date,
+    'pos_id' => $pos_id,
+    'service_id' => $service_id,
+    'status' => $status,
 ];
