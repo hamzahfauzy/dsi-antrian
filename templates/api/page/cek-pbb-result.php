@@ -94,7 +94,7 @@
         </tbody>
     </table>
     <?php else: ?>
-    <center><i><?=$data->msg?></i></center>
+    <center><i style="color:red"><?=$data->msg?></i></center>
     <?php endif ?>
     <?php endif ?>
 </div>
