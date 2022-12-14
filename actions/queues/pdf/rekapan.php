@@ -23,8 +23,9 @@
 }
 </style>
 <img src="<?=$logo?>" alt="" style="width:100px;height:120px;" />
-<h2 align="center" style="margin-top:-100px;margin-bottom:0;">BADAN PENDAPATAN DAERAH<br>KABUPATEN ASAHAN</h2>
-<p align="center">Mekar Baru, Kec. Kota Kisaran Barat, Kabupaten Asahan, Sumatera Utara 21211</p>
+<h2 align="center" style="margin-top:-100px;margin-bottom:0;">PEMERINTAH KABUPATEN ASAHAN<br>BADAN PENDAPATAN DAERAH</h2>
+<p align="center">JL. PLAMBOYAN SIBOGAT, MEKAR BARU TELP. (0623) 41243</p>
+<img src="<?=$logo2?>" alt="" style="width:100px;height:120px;float:right;margin-top:-120px;" />
 <div style="height:20px"></div>
 <hr>
 <h3 align="center" style="margin-bottom:0;">REKAPITULASI</h3>
@@ -34,31 +35,15 @@
 <table id="customers" style="width:100%;">
   <tr>
     <th>No</th>
-    <th width="340">Layanan</th>
-    <th>Jumlah Menunggu</th>
-    <th>Jumlah Selesai</th>
-    <th>Jumlah Total</th>
+    <th width="440">Layanan</th>
+    <th width="200">Jumlah Total</th>
   </tr>
-  <?php 
-  $wait = 0; $finish = 0;
-  foreach($p->services as $no => $d): 
-    $wait += $d->queues_wait; 
-    $finish += $d->queues_finish; 
-  ?>
+  <?php foreach($p->services as $no => $d): ?>
   <tr>
     <td><?=$no+1?></td>
     <td><?=$d->name?></td>
-    <td><?=number_format($d->queues_wait)?></td>
-    <td><?=number_format($d->queues_finish)?></td>
-    <td><?=number_format($d->queues_wait+$d->queues_finish)?></td>
+    <td><?=number_format($d->queues)?></td>
   </tr>
   <?php endforeach ?>
-  <tr>
-    <td></td>
-    <td>Total</td>
-    <td><?=number_format($wait)?></td>
-    <td><?=number_format($finish)?></td>
-    <td><?=number_format($wait+$finish)?></td>
-  </tr>
 </table>
 <?php endforeach ?>

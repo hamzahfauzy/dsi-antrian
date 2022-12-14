@@ -22,7 +22,7 @@ $pos = $db->all('pos');
 
 if(isset($_GET['laporan']))
 {
-    $where = "WHERE (created_at BETWEEN '$start_date 00:00:00' AND '$end_date 23:59:59')";
+    $where = "WHERE (created_at BETWEEN '$start_date 00:00:00' AND '$end_date 23:59:59') AND status='selesai'";
 
     if($pos_id)
     {
@@ -33,11 +33,6 @@ if(isset($_GET['laporan']))
     {
         $where .= " AND service_id=$service_id";
     }
-    
-    if($status)
-    {
-        $where .= " AND status='$status'";
-    }
 
     $db->query = "SELECT * FROM $table $where ORDER BY created_at DESC, status ASC, `number` ASC, pos_id ASC";
     $data  = $db->exec('all');
@@ -46,6 +41,11 @@ if(isset($_GET['laporan']))
     $type = pathinfo($path, PATHINFO_EXTENSION);
     $data_logo = file_get_contents($path);
     $logo = 'data:image/' . $type . ';base64,' . base64_encode($data_logo);
+    
+    $path = 'logo-2.png';
+    $type = pathinfo($path, PATHINFO_EXTENSION);
+    $data_logo = file_get_contents($path);
+    $logo2 = 'data:image/' . $type . ';base64,' . base64_encode($data_logo);
 
     ob_start();
     require 'pdf/laporan.php';
@@ -54,7 +54,7 @@ if(isset($_GET['laporan']))
     
     $html2pdf = new Html2Pdf();
     $html2pdf->writeHTML($html);
-    $html2pdf->output();
+    $html2pdf->output('laporan-antrian.pdf','D');
 
     die();
 }
@@ -65,11 +65,8 @@ if(isset($_GET['rekapan']))
     $pos = array_map(function($p) use ($db, $start_date, $end_date){
         $services = $db->all('services',['pos_id'=>$p->id]);
         $services = array_map(function($service) use ($db, $start_date, $end_date){
-            $db->query = "SELECT * FROM queues WHERE status='menunggu' AND (created_at BETWEEN '$start_date 00:00:00' AND '$end_date 23:59:59') AND pos_id=$service->pos_id AND service_id=$service->id";
-            $service->queues_wait = $db->exec('exists');
-
             $db->query = "SELECT * FROM queues WHERE status='selesai' AND (created_at BETWEEN '$start_date 00:00:00' AND '$end_date 23:59:59') AND pos_id=$service->pos_id AND service_id=$service->id";
-            $service->queues_finish = $db->exec('exists');
+            $service->queues = $db->exec('exists');
             return $service;
         }, $services);
 
@@ -83,6 +80,11 @@ if(isset($_GET['rekapan']))
     $data_logo = file_get_contents($path);
     $logo = 'data:image/' . $type . ';base64,' . base64_encode($data_logo);
 
+    $path = 'logo-2.png';
+    $type = pathinfo($path, PATHINFO_EXTENSION);
+    $data_logo = file_get_contents($path);
+    $logo2 = 'data:image/' . $type . ';base64,' . base64_encode($data_logo);
+
     ob_start();
     require 'pdf/rekapan.php';
     $html = ob_get_contents(); 
@@ -90,7 +92,7 @@ if(isset($_GET['rekapan']))
     
     $html2pdf = new Html2Pdf();
     $html2pdf->writeHTML($html);
-    $html2pdf->output();
+    $html2pdf->output('rekapitulasi-antrian.pdf','D');
 
     die();
 }
