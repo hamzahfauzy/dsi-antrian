@@ -70,6 +70,85 @@
 			ajax: location.href
 		})
 		$('.datatable').dataTable();
+
+		<?php if(get_route() == 'default/index'): ?>
+
+		Circles.create({
+			id:'circles-1',
+			radius:80,
+			value:<?=$survey_tidak_memuaskan?>,
+			maxValue:<?=$survey_total?>,
+			width:10,
+			text: <?=number_format(($survey_tidak_memuaskan/$survey_total)*100,0)?>+'%',
+			colors:['#f1f1f1', '#FF9E27'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+
+		Circles.create({
+			id:'circles-2',
+			radius:80,
+			value:<?=$survey_cukup_memuaskan?>,
+			maxValue:<?=$survey_total?>,
+			width:10,
+			text: <?=number_format(($survey_cukup_memuaskan/$survey_total)*100,0)?>+'%',
+			colors:['#f1f1f1', '#2BB930'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+
+		Circles.create({
+			id:'circles-3',
+			radius:80,
+			value:<?=$survey_memuaskan?>,
+			maxValue:<?=$survey_total?>,
+			width:10,
+			text: <?=number_format(($survey_memuaskan/$survey_total)*100,0)?>+'%',
+			colors:['#f1f1f1', '#F25961'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+		
+		Circles.create({
+			id:'circles-4',
+			radius:80,
+			value:<?=$survey_sangat_memuaskan?>,
+			maxValue:<?=$survey_total?>,
+			width:10,
+			text: <?=number_format(($survey_sangat_memuaskan/$survey_total)*100,0)?>+'%',
+			colors:['#f1f1f1', '#9b59b6'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+		
+		Circles.create({
+			id:'circles-5',
+			radius:80,
+			value:<?=$survey_total?>,
+			maxValue:<?=$survey_total?>,
+			width:10,
+			text: <?=$survey_total?>,
+			colors:['#f1f1f1', '#3498db'],
+			duration:400,
+			wrpClass:'circles-wrp',
+			textClass:'circles-text',
+			styleWrapper:true,
+			styleText:true
+		})
+
+		<?php endif ?>
 	</script>
 </body>
 </html>
