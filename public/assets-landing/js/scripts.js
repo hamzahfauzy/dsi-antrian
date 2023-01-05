@@ -115,6 +115,30 @@
 			});
 		});
 
+		$('#modal-open-survey').on('click', function(e) {
+			var mainInner = $('#main .inner'),
+				modal = $('#modal-survey');
+
+				clearAllInput()
+
+			mainInner.animate({ opacity: 0.08 }, 400, function(){
+				$('html,body').scrollTop(0);
+				modal.addClass('modal-active').fadeIn(400);
+			});
+			e.preventDefault();
+
+			$('#modal-close-survey').on('click', function(e) {
+				modal.removeClass('modal-active').fadeOut(400, function(){
+					mainInner.animate({ opacity: 3 }, 400);
+				});
+				e.preventDefault();
+			});
+
+			fetch('index.php?r=api/page/survey').then(res => res.text()).then(res => {
+				$('.question').html(res)
+			})
+		});
+
 
 		// particles JS
 		$(function(){
@@ -196,4 +220,29 @@ function clearAllInput()
 
 	$('#vNpoptkp').html(0);
 	$('#npoptkp').val(0);
+}
+
+function nextQuestionTo(qid, result)
+{
+	// save current
+	var formData = new FormData
+	formData.append('question_id',qid)
+	formData.append('result',result)
+	fetch('index.php?r=api/survey-save',{
+		method:'POST',
+		body:formData
+	})
+	.then(res => res.text())
+	.then(res => {
+		// visible next and hide current
+		$('#question-'+(qid-1)).addClass('d-none')
+		if($('#question-'+qid).length)
+		{
+			$('#question-'+qid).removeClass('d-none')
+		}
+		else
+		{
+			$('.question').html("<h2 style='color:#000'>Terima kasih telah mengisi Survey Kepuasan<h2>")
+		}
+	})
 }

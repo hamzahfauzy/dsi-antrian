@@ -52,5 +52,27 @@ return [
             'label' => 'File',
             'type'  => 'file'
         ]
+    ],
+
+    'survey_questions' => [
+        'question' => [
+            'label' => 'Pertanyaan',
+            'type'  => 'textarea'
+        ],
+    ],
+
+    'survey' => [
+        'question' => [
+            'label' => 'Pertanyaan',
+            'type'  => 'text'
+        ],
+        'result' => [
+            'label' => 'Pilihan',
+            'type'  => 'options:Sangat Memuaskan|Memuaskan|Cukup Memuaskan|Kurang Memuaskan'
+        ],
+        'created_at' => [
+            'label' => 'Tanggal',
+            'type'  => 'datetime-local'
+        ]
     ]
 ];

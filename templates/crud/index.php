@@ -8,13 +8,48 @@
                         <h5 class="text-white op-7 mb-2">Memanajemen data <?=_ucwords(__($table))?></h5>
                     </div>
                     <div class="ml-md-auto py-2 py-md-0">
-                        <?php if($table != 'queues' && is_allowed(get_route_path('crud/create',['table'=>$table]),auth()->user->id)): ?>
+                        <?php if(!in_array($table,['queues','survey']) && is_allowed(get_route_path('crud/create',['table'=>$table]),auth()->user->id)): ?>
                             <a href="<?=routeTo('crud/create',['table'=>$table])?>" class="btn btn-secondary btn-round">Buat <?=_ucwords(__($table))?></a>
+                        <?php endif ?>
+
+                        <?php if($table == 'survey_questions'): ?>
+                            <a href="<?=routeTo('crud/index',['table'=>'survey'])?>" class="btn btn-primary btn-round">Lihat Hasil</a>
                         <?php endif ?>
                     </div>
                 </div>
             </div>
         </div>
+        <?php if($table == 'survey'): ?>
+            <div class="page-inner mt--5">
+            <div class="row row-card-no-pd">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="" class="row">
+                                <input type="hidden" name="table" value="survey">
+                                <div class="form-group col">
+                                    <label for="">Tanggal Awal</label>
+                                    <input type="date" name="start_date" id="" class="form-control" value="<?=isset($_GET['start_date']) ? $_GET['start_date'] : ''?>">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="">Tanggal Akhir</label>
+                                    <input type="date" name="end_date" id="" class="form-control" value="<?=isset($_GET['end_date']) ? $_GET['end_date'] : ''?>">
+                                </div>
+                                <div class="form-group col">
+                                    <label for="">&nbsp;</label>
+                                    <button class="btn btn-block btn-success"><i class="fas fa-filter fa-fw"></i> Filter</button>
+                                </div>
+                                <div class="form-group col">
+                                    <label for="">&nbsp;</label>
+                                    <button class="btn btn-block btn-primary" name="laporan" value="true"><i class="fas fa-download fa-fw"></i> Download</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endif ?>
         <div class="page-inner mt--5">
             <div class="row row-card-no-pd">
                 <div class="col-md-12">

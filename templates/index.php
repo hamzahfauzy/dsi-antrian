@@ -30,7 +30,7 @@
  }
  .top-site-outer {
   width: auto;
-  padding: 20px 26px 4px;
+  padding: 20px 14px 4px;
   border-radius: 8px;
   display: inline-block;
 }
@@ -354,6 +354,23 @@
                     </a>
                   </div>
                 </li>
+                <li class="top-site-outer">
+                  <div class="top-site-inner">
+                    <a class="top-site-button" href="#" id="modal-open-survey" tabindex="0" draggable="true" data-is-sponsored-link="false">
+                      <div class="tile" aria-hidden="true">
+                        <div class="icon-wrapper" data-fallback="w">
+                          <div class="top-site-icon rich-icon" style="background-image: url('https://cdn-icons-png.flaticon.com/512/4634/4634993.png');">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="title">
+                        <span dir="auto">
+                          SURVEY KEPUASAN
+                        </span>
+                      </div>
+                    </a>
+                  </div>
+                </li>
               </ul>
             </div>
 					</div>
@@ -476,7 +493,7 @@
           </div>
         </div>
 
-    <!-- Modal Subdomain -->
+    	<!-- Modal Subdomain -->
 		<div id="modal-opd">
 			<div class="inner"  style="padding-left:10px;">
 				<div class="social">
@@ -575,6 +592,18 @@
 							</div>
 						</div>
 					</div>
+				</section>
+			</div>
+		</div>
+
+		<div id="modal-survey">
+			<div class="inner"  style="padding-left:10px;">
+				<div class="social">
+					<a href="#" id="modal-close-survey"><span class="fa fa-times" title="Close"></span></a>
+				</div>
+				<section class="content">
+					<h1 class="section-title">Survey Kepuasan</h1>
+					<div class="question bg-white" style="max-width:1000px;margin:auto;"></div>
 				</section>
 			</div>
 		</div>

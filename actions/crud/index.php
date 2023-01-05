@@ -7,6 +7,12 @@ $db   = new Database($conn);
 $success_msg = get_flash_msg('success');
 $fields = config('fields')[$table];
 
+if($table == 'survey' && (isset($_GET['start_date']) && isset($_GET['end_date']) && isset($_GET['laporan'])))
+{
+    header('location:'.routeTo('survey/download',$_GET));
+    die();
+}
+
 if(file_exists('../actions/'.$table.'/override-index-fields.php'))
     $fields = require '../actions/'.$table.'/override-index-fields.php';
 
@@ -41,6 +47,12 @@ if(isset($_GET['draw']))
         }
 
         $where = "WHERE (".implode(' OR ',$_where).")";
+    }
+
+    if($table == 'survey' && (isset($_GET['start_date']) && isset($_GET['end_date'])))
+    {
+        $where = empty($where) ? 'WHERE ' : $where . ' AND ';
+        $where .= ' (created_at >= "'.$_GET['start_date'].' 00:00:00" AND created_at <= "'.$_GET['end_date'].' 23:59:59")';
     }
 
     if(file_exists('../actions/'.$table.'/override-index.php'))
@@ -102,10 +114,10 @@ if(isset($_GET['draw']))
             // $table, $d (data object)
             $action .= require '../actions/'.$table.'/action-button.php';
         }
-        if($table != 'queues' &&  is_allowed(get_route_path('crud/edit',['table'=>$table]),auth()->user->id)):
+        if(!in_array($table,['queues','survey']) &&  is_allowed(get_route_path('crud/edit',['table'=>$table]),auth()->user->id)):
             $action .= '<a href="'.routeTo('crud/edit',['table'=>$table,'id'=>$d->id]).'" class="btn btn-sm btn-warning"><i class="fas fa-pencil-alt"></i> Edit</a>';
         endif;
-        if($table != 'queues' &&  is_allowed(get_route_path('crud/delete',['table'=>$table]),auth()->user->id)):
+        if(!in_array($table,['queues','survey']) &&  is_allowed(get_route_path('crud/delete',['table'=>$table]),auth()->user->id)):
             $action .= '<a href="'.routeTo('crud/delete',['table'=>$table,'id'=>$d->id]).'" onclick="if(confirm(\'apakah anda yakin akan menghapus data ini ?\')){return true}else{return false}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Hapus</a>';
         endif;
         $results[$key][] = $action;
